@@ -1,0 +1,2222 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 402px;
+  height: 1800px;
+  align-items: center;
+  gap: 12px;
+  padding: 66px 0px 30px;
+  position: relative;
+  background-color: var(--background);
+}
+.map-wrapper {
+        position: relative;
+        width: 100%;
+        max-height: 400px;
+        overflow: hidden;
+        font-family: var(--main-font-font-family);
+        font-weight: var(--main-font-font-weight);
+        transition: max-height 0.5s ease-in-out;
+    }
+
+    .map-wrapper.expanded {
+        max-height: 3000px;
+        font-family: var(--main-font-font-family);
+        font-weight: var(--main-font-font-weight);
+    }
+
+    .gradient-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+        pointer-events: none;
+        transition: opacity 0.3s;
+        font-family: var(--main-font-font-family);
+        font-weight: var(--main-font-font-weight);
+    }
+
+    .map-wrapper.expanded .gradient-overlay {
+        opacity: 0;
+    }
+
+    .more-btn {
+        margin-top: 10px;
+        padding: 8px 20px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        font-size: 13px;
+        color: #555;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        transition: background 0.2s;
+        font-family: var(--main-font-font-family);
+        font-weight: var(--main-font-font-weight);
+    }
+    .more-btn:hover {
+        background-color: #e0e0e0;
+    }
+
+/*[통합 헤더 스타일] 모든 페이지 공통 적용*/
+
+/* 1. 헤더 전체 박스 */
+.header {
+  display: flex;
+  align-items: center;    
+  justify-content: center; 
+  gap: 12px; 
+  
+  width: 100%;
+  height: 46px !important;
+  min-height: 46px !important;
+  max-height: 46px !important;
+  
+  flex-shrink: 0 !important; 
+  flex-grow: 0 !important;
+  
+  background-color: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 100;            
+  box-sizing: border-box;    
+  padding: 0;              
+}
+
+.header .frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  flex: 0 0 auto; 
+}
+
+.header .checkmyclass-x {
+  width: 40px;
+  height: 30px;
+  object-fit: contain;
+  display: block;
+}
+
+.header .check-my-class {
+  width: 128px;
+  height: 20px;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+}
+
+.check-my-class {
+  height: 240px;
+}
+
+.header a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.deu {
+  position: relative;
+  width: 44px;
+  height: 44px;
+}
+
+.main .frame {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -7px;
+  margin-bottom: -7px;
+}
+
+.main .profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  margin: 8px 0 0 0;
+}
+
+.main .div {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.main .view {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  aspect-ratio: 1;
+  background-image: url(./img/1.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.main .text-wrapper {
+  position: relative;
+  margin: 0 10px;
+  width: 173px;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--main);
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  font-style: var(--main-font-font-style);
+}
+
+.main .div-wrapper {
+  display: inline-flex;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 3px 10px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--main);
+  border-radius: 20px;
+}
+
+.main .div-wrapper-2 {
+  display: inline-flex;
+  height: 12px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 150px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--main);
+  border-radius: 8px;
+}
+
+.main .text-wrapper-2 {
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--white);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.main .view-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.main .frame-2 {
+  display: inline-flex;
+  max-height: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--background);
+  border-radius: 20px;
+  border: 1px solid;
+  border-color: var(--main);
+}
+
+.main .text-wrapper-3 {
+  font-family: "Pretendard Variable-Medium";
+  font-weight: 500;
+  color: var(--black);
+  position: relative;
+  width: fit-content;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.main .view-3 {
+  display: flex;
+  width: 354px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  background-color: var(--main);
+  border-radius: 12px;
+}
+
+.main .text-wrapper-4 {
+  margin-top: -1px;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--white);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.main .frame-3 {
+  display: flex;
+  flex-direction: column;
+  width: 30px;
+  height: 500px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+}
+
+.main .text-wrapper-5 {
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--black);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.main .view-4 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 20px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--main);
+  border-radius: 20px;
+}
+
+/* Inject original CSS code here */
+
+.main .frame-2 {
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.main .frame-2:hover {
+  background-color: var(--main);
+  border-color: var(--main);
+}
+
+.main .frame-2:hover .text-wrapper-3 {
+  color: var(--white);
+}
+
+.main .frame-2:focus {
+  outline: 2px solid var(--main);
+  outline-offset: 2px;
+}
+
+.main .frame-2:active {
+  transform: scale(0.98);
+}
+
+.main .view-3 {
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  border: none;
+}
+
+.main .view-3:hover {
+  background-color: rgba(32, 59, 85, 0.9);
+}
+
+.main .view-3:focus {
+  outline: 2px solid var(--main);
+  outline-offset: 2px;
+}
+
+.main .view-3:active {
+  transform: scale(0.98);
+}
+
+.main .view-4 {
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  border: none;
+}
+
+.main .view-4:hover {
+  background-color: rgba(32, 59, 85, 0.9);
+}
+
+.main .view-4:focus {
+  outline: 2px solid var(--main);
+  outline-offset: 2px;
+}
+
+.main .view-4:active {
+  transform: scale(0.98);
+}
+
+.map-container {
+  width: 900px;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.map-image {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .map-image {
+    max-width: none;
+  }
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.log-in {
+  display: flex;
+  width: 402px;
+  height: 742px;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding-top: 66px;
+  padding-bottom: 66px;
+  background-color: var(--background);
+  flex-direction: column;
+  position: relative;
+}
+
+.log-in .view {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+}
+
+.log-in .login {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+}
+
+.log-in .info {
+  display: flex;
+  height: 147px;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 10px;
+  flex-direction: column;
+  position: relative;
+}
+
+.log-in .text-wrapper {
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+  font-family: "Pretendard Variable-Medium";
+  font-weight: 700;
+  color: #333333;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.log-in .input {
+  display: flex;
+  width: 293px;
+  height: 32px;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 1px 3px;
+  flex: 0 0 auto;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: var(--gray);
+  flex-direction: column;
+  position: relative;
+}
+
+.log-in .frame {
+  position: relative;
+  width: 91px;
+  height: 37px;
+}
+
+.log-in .div {
+  position: relative;
+  width: fit-content;
+  font-family: "Pretendard Variable-Medium";
+  font-weight: 700;
+  color: #333333;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.log-in .button {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  width: 303px;
+  align-items: flex-start;
+  gap: 15px;
+  flex: 0 0 auto;
+  border-radius: 15px;
+  overflow: hidden;
+  flex-direction: column;
+  position: relative;
+}
+
+.log-in .button-wrapper {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  width: 303px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--main);
+  border-radius: 15px;
+}
+
+.log-in .button-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Pretendard Variable-Medium";
+  font-weight: 700;
+  color: var(--white);
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.log-in .actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.text-link {
+  display: flex;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  position: relative;
+}
+
+.text-link .text-wrapper {
+  position: relative;
+  width: fit-content;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-weight: 400;
+  color: var(--main);
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 16.8px;
+  text-decoration: underline;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.text-link .text-wrapper:hover {
+  opacity: 0.8;
+}
+
+.text-link .text-wrapper:focus {
+  outline: 2px solid var(--main);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.text-link .text-wrapper:active {
+  opacity: 0.6;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  width: 402px;
+  height: 874px;
+  align-items: center;
+  gap: 48px;
+  padding: 66px 0px 127px;
+  position: relative;
+  background-color: var(--background);
+}
+
+.register .frame {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -7px;
+  margin-bottom: -7px;
+}
+
+.register .view {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.register .login {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.register .text-wrapper {
+  margin-top: -1px;
+  font-family: "Pretendard Variable-Bold", Helvetica;
+  text-align: center;
+  position: relative;
+  width: fit-content;
+  font-weight: 700;
+  color: #333333;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.register .info {
+  display: flex;
+  flex-direction: column;
+  width: 313px;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 10px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.register .div {
+  margin-top: -1px;
+  font-family: "Inter-Bold", Helvetica;
+  position: relative;
+  width: fit-content;
+  font-weight: 700;
+  color: #333333;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.register .input {
+  width: 293px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 1px 3px;
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: var(--gray);
+}
+
+.register .frame-2 {
+  position: relative;
+  width: 91px;
+  height: 37px;
+}
+
+.register .text-wrapper-2 {
+  font-family: "Inter-Bold", Helvetica;
+  position: relative;
+  width: fit-content;
+  font-weight: 700;
+  color: #333333;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.register .frame-3 {
+  display: flex;
+  width: 294px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex: 0 0 auto;
+  margin-right: -1px;
+}
+
+.register .frame-wrapper {
+  width: 187px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 1px 3px;
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: var(--gray);
+}
+
+.register .frame-4 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.register .button {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 303px;
+  align-items: flex-start;
+  gap: 15px;
+  position: relative;
+  flex: 0 0 auto;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.register .button-wrapper {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  width: 303px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--main);
+  border-radius: 15px;
+}
+
+.register .button-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: var(--x-0);
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.register .frame-2 {
+  position: relative;
+  width: 100%;
+  height: 37px;
+  border: none;
+  background: transparent;
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #333333;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.register .frame-2:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: -2px;
+}
+
+.register .frame-4 label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.register .info {
+  display: flex;
+  flex-direction: column;
+  width: 313px;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 10px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.register .button {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  gap: 15px;
+  position: relative;
+  flex: 0 0 auto;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.register .button-wrapper {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  position: relative;
+  flex: 0 0 auto;
+  color: #ffffff;
+  background-color: var(--main);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+
+.register .button-wrapper:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.register .button-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: var(—x-0);
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+  pointer-events: none;
+}
+
+
+.register .frame-3 {
+  display: flex;
+  width: 294px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex: 0 0 auto;
+  margin-right: -1px;
+}
+
+.register .frame-wrapper {
+  width: 187px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 1px 3px;
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: var(--gray);
+}
+
+.register .frame-4 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.register .frame-4 label {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* 체크박스 외곽선 */
+.register .check-box-outline {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--gray);
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+.register .icon {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 1px;
+  left: 1px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.register .icon:checked {
+  background-color: var(--main);
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.register .icon:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.reservation {
+  display: flex;
+  flex-direction: column;
+  width: 402px;
+  /* height: 874px; */
+  align-items: center;
+  gap: 12px;
+  padding: 66px 0px 0px;
+  position: relative;
+  background-color: var(--background);
+}
+
+.reservation .frame {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -7px;
+  margin-bottom: -7px;
+}
+
+.reservation .view {
+  display: flex;
+  width: 228px;
+  gap: 10px;
+  padding: 4px 10px;
+  background-color: var(--main);
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.reservation .text-wrapper {
+  margin-top: -1px;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--white);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.reservation .div {
+  display: flex;
+  gap: 12px;
+  align-self: stretch;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.reservation .div-wrapper {
+  display: inline-flex;
+  max-height: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--main);
+  border-radius: 20px;
+  border: 1px solid;
+  border-color: var(--main);
+}
+
+.reservation .text-wrapper-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -8px;
+  margin-bottom: -6px;
+  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-weight: 500;
+  color: var(--background);
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.reservation .frame-2 {
+  display: inline-flex;
+  max-height: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--background);
+  border-radius: 20px;
+  border: 1px solid;
+  border-color: var(--main);
+}
+
+.reservation .text-wrapper-3 {
+  margin-top: -8px;
+  margin-bottom: -6px;
+  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-weight: 500;
+  color: var(--main);
+  position: relative;
+  width: fit-content;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.reservation .frame-3 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 4px 8px;
+  position: relative;
+  flex: 0 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: var(--main);
+}
+
+.reservation .text-wrapper-4 {
+  margin-top: -1px;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--main);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.reservation .frame-4 {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.reservation .frame-5 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 4px 8px;
+  position: relative;
+  flex: 0 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.reservation .frame-6 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.reservation .frame-7 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  /* 3w */
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.reservation .text-wrapper-5 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Pretendard-Bold", Helvetica;
+  font-weight: 700;
+  color: var(--main);
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.reservation .frame-8 {
+  display: flex;
+  width: 147px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.reservation .frame-9 {
+  display: flex;
+  flex-direction: column;
+  width: 354px;
+  height: 204px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  background-color: var(--gray);
+}
+
+.reservation .text-wrapper-6 {
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--black);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.reservation .p {
+  position: relative;
+  width: fit-content;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--main);
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.reservation .view-2 {
+  display: inline-flex;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: var(--main);
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.reservation .frame-10 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 119px;
+  padding: 0px 24px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.reservation .frame-11 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 4px 8px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-left: -5.5px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.reservation .frame-12 {
+  display: flex;
+  width: 147px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-right: -5.5px;
+}
+/* Original CSS should be injected here */
+
+.reservation button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.reservation button:hover {
+  opacity: 0.9;
+}
+
+.reservation button:active {
+  opacity: 0.8;
+}
+
+.reservation .div-wrapper,
+.reservation .frame-2 {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.reservation .view-2:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reservation .view-2:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.reservation h1,
+.reservation h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.reservation time {
+  display: inline;
+}
+
+.reservation figure {
+  margin: 0;
+  padding: 0;
+}
+
+.reservation figcaption {
+  display: block;
+}
+
+/* 이후 수정해야 함*/
+
+.manager {
+  display: flex;
+  flex-direction: column;
+  width: 402px;
+  height: 874px;
+  align-items: center;
+  gap: 12px;
+  padding: 66px 0px 0px;
+  position: relative;
+  background-color: var(--background);
+}
+
+.manager .frame {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -7px;
+  margin-bottom: -7px;
+}
+
+.manager .reservation {
+  display: flex;
+  width: 351px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--background);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: var(--gray);
+}
+
+.manager .div {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.manager .frame-2 {
+  display: flex;
+  flex-direction: column;
+  width: 233px;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.manager .text-wrapper {
+  margin-top: -1px;
+  font-size: 22px;
+  position: relative;
+  width: fit-content;
+  font-family: "Pretendard-Bold", Helvetica;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.manager .input {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 4px 8px;
+  position: relative;
+  flex: 0 0 auto;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.manager .element {
+  margin-top: -1px;
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: var(--black);
+  font-size: 16px;
+  position: relative;
+  width: fit-content;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.manager .frame-3 {
+  display: flex;
+  width: 233px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.manager .text-wrapper-2 {
+  font-family: "Pretendard-Bold", Helvetica;
+  font-weight: 700;
+  color: var(--black);
+  font-size: 18px;
+  white-space: nowrap;
+  position: relative;
+  width: fit-content;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.manager .text-wrapper-3 {
+  margin-top: -1px;
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: var(--black);
+  font-size: 18px;
+  white-space: nowrap;
+  position: relative;
+  width: fit-content;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.manager .div-wrapper {
+  border: 1px solid;
+  border-color: var(--x-200);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 4px 8px;
+  position: relative;
+  flex: 0 0 auto;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.manager .view {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 20px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--main);
+  border-radius: 20px;
+}
+
+.manager .text-wrapper-4 {
+  margin-top: -1px;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--white);
+  font-size: var(--main-font-font-size);
+  white-space: nowrap;
+  position: relative;
+  width: fit-content;
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  font-style: var(--main-font-font-style);
+}
+
+.manager .frame-4 {
+  display: flex;
+  flex-direction: column;
+  width: 354px;
+  height: 204px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  background-color: var(--gray);
+}
+
+.manager .text-wrapper-5 {
+  font-size: var(--main-font-font-size);
+  position: relative;
+  width: fit-content;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--black);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.reservation {
+  display: flex;
+  flex-direction: column;
+  width: 402px;
+  height: 1300px;
+  align-items: center;
+  gap: 12px;
+  padding: 66px 0px 0px;
+  position: relative;
+  background-color: var(--background);
+}
+
+.reservation .frame {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -7px;
+  margin-bottom: -7px;
+}
+
+.reservation .view {
+  display: flex;
+  width: 228px;
+  gap: 10px;
+  padding: 4px 10px;
+  background-color: var(--main);
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.reservation .text-wrapper {
+  margin-top: -1px;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--white);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.reservation .div {
+  display: flex;
+  gap: 12px;
+  align-self: stretch;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.reservation .div-wrapper {
+  display: inline-flex;
+  max-height: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--main);
+  border-radius: 20px;
+  border: 1px solid;
+  border-color: var(--main);
+}
+
+.reservation .text-wrapper-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -8px;
+  margin-bottom: -6px;
+  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-weight: 500;
+  color: var(--background);
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.reservation .frame-2 {
+  display: inline-flex;
+  max-height: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--background);
+  border-radius: 20px;
+  border: 1px solid;
+  border-color: var(--main);
+}
+
+.reservation .text-wrapper-3 {
+  margin-top: -8px;
+  margin-bottom: -6px;
+  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-weight: 500;
+  color: var(--main);
+  position: relative;
+  width: fit-content;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.reservation .frame-3 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 4px 8px;
+  position: relative;
+  flex: 0 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: var(--main);
+}
+
+.reservation .text-wrapper-4 {
+  margin-top: -1px;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--main);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.reservation .frame-4 {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.reservation .frame-5 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 4px 8px;
+  position: relative;
+  flex: 0 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.reservation .frame-6 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.reservation .frame-7 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0px 24px;
+  position: relative;
+  /* 3w */
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.reservation .text-wrapper-5 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Pretendard-Bold", Helvetica;
+  font-weight: 700;
+  color: var(--main);
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.reservation .frame-8 {
+  display: flex;
+  width: 147px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.reservation .frame-9 {
+  display: flex;
+  flex-direction: column;
+  width: 354px;
+  height: 204px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  background-color: var(--gray);
+}
+
+.reservation .text-wrapper-6 {
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--black);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.reservation .p {
+  position: relative;
+  width: fit-content;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--main);
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.reservation .view-2 {
+  display: inline-flex;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: var(--main);
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.reservation .frame-10 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 119px;
+  padding: 0px 24px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.reservation .frame-11 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 4px 8px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-left: -5.5px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.reservation .frame-12 {
+  display: flex;
+  width: 147px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-right: -5.5px;
+}
+.reservation button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.reservation button:hover {
+  opacity: 0.9;
+}
+
+.reservation button:active {
+  opacity: 0.8;
+}
+
+.reservation .div-wrapper,
+.reservation .frame-2 {
+  max-height: none;
+  height: auto;
+
+  padding: 8px 12px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.reservation .view-2:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reservation .view-2:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.reservation h1,
+.reservation h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.reservation time {
+  display: inline;
+}
+
+.reservation figure {
+  margin: 0;
+  padding: 0;
+}
+
+.reservation figcaption {
+  display: block;
+}
+
+/* =========================================
+   Mypage (마이페이지) 전용 스타일
+   ========================================= */
+
+.mypage {
+  display: flex;
+  flex-direction: column;
+  width: 402px;
+
+  /* 높이 자동 조절 및 여백 */
+  height: auto;
+  min-height: 100vh;
+  padding: 66px 0px 50px 0px;
+
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  background-color: var(--background);
+}
+
+/* 프로필 섹션 */
+.mypage .profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  margin-top: 10px;
+}
+.mypage .div {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.mypage .text-wrapper {
+  font-weight: bold;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--main);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* 학생회원 뱃지 */
+.mypage .div-wrapper {
+  padding: 4px 10px;
+  background-color: var(--main);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mypage .text-wrapper-2 {
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--white);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.mypage .view-2 {
+  width: 80%;
+  padding: 0px 0;
+  background-color: var(--main);
+  border-radius: 20px;
+  text-align: center;
+  margin: 0px 0;
+}
+.mypage .text-wrapper-3 {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.mypage .line {
+  width: 90%;
+  height: 1px;
+  background-color: #ddd;
+  border: none;
+  margin: 0;
+}
+
+.mypage .reservation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 350px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: 10px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.mypage .frame-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 75%;
+  border: 0;
+  margin: 0;
+}
+
+/* 각 행 (라벨 + 값) */
+.mypage .frame-3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: 0;
+  margin: 0;
+}
+
+/* 라벨 (왼쪽 정렬) */
+.mypage .text-wrapper-4 {
+  font-family: var(--main-font-font-family);
+  font-weight: 800;
+  color: black;
+  font-size: 15px;
+  text-align: left;
+}
+
+/* 값 (오른쪽 정렬) */
+.mypage .text-wrapper-5 {
+  font-family: var(--main-font-font-family);
+  font-weight: 500;
+  color: black;
+  font-size: 15px;
+  text-align: right;
+  flex: 1;
+}
+
+/* 대여 목적 박스 */
+.mypage .purpose-box {
+  border: 1px solid #ddd;
+  background-color: var(--light-gray);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  margin-left: auto;
+}
+
+/* 상태별 색상 클래스 */
+.status-waiting {
+  border-color: var(--main);
+  color: var(--main);
+  flex-shrink: 0;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid;
+  margin-left: 10px;
+}
+.status-rejected {
+  border-color: var(--red);
+  color: var(--red);
+  flex-shrink: 0;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid;
+  margin-left: 10px;
+}
+.status-approved {
+  border-color: var(--green);
+  color: var(--green);
+  flex-shrink: 0;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid;
+  margin-left: 10px;
+}
+
+/* =========================================
+   Manager (관리자 페이지) 스타일 업데이트
+   ========================================= */
+
+.manager {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  width: 402px;
+  align-items: center;
+  gap: 15px;
+  padding: 66px 0px 100px; 
+  background-color: var(--background);
+}
+
+.manager .reservation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 350px;
+  height: auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: 10px;
+}
+
+/* 왼쪽 정보 컨테이너 */
+.manager .info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 75%;
+}
+
+/* 각 행 (Row) - 테두리 없음 */
+.manager .info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* 라벨 (왼쪽 정렬) */
+.manager .label {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 800;
+  color: var(--black);
+  font-size: 15px;
+  width: 70px;
+  flex-shrink: 0;
+  text-align: left;
+}
+
+/* 값 (오른쪽 정렬) */
+.manager .value {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  color: #333;
+  font-size: 15px;
+  text-align: right;
+  flex: 1;
+  word-break: keep-all;
+  line-height: 1.4;
+}
+
+.manager .user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+/* 예약자 라벨 (17px) */
+.manager .user-label {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 800;
+  color: var(--black);
+  font-size: 20px;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+/* 예약자 정보 값 (15px, 들여쓰기) */
+.manager .user-value {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  color: #333;
+  font-size: 15px;
+  text-align: left;
+  line-height: 1.4;
+  padding-left: 10px;
+}
+
+/* 대여 목적 박스 (마이페이지와 동일) */
+.manager .purpose-box {
+  border: 1px solid #ddd;
+  background-color: var(--light-gray);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  margin-left: auto;
+}
+
+/* --- 승인 버튼 (오른쪽 배치) --- */
+.manager .approve-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-color: var(--green);
+  color: var(--green);
+  flex-shrink: 0;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid;
+  margin-bottom: 15px;
+}
+
+.manager .reject-btn {
+background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-color: var(--red);
+  color: var(--red);
+  flex-shrink: 0;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid;
+  margin-bottom: 15px;
+}
+
+.manager .btn-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main);
+  padding: 10px 18px;
+  border-radius: 12px;
+  transition: opacity 0.2s;
+}
+
+.manager .btn-view:hover {
+  opacity: 0.9;
+}
+
+.manager .btn-text {
+  font-family: "Pretendard Variable-Midium";
+  font-weight: 700;
+  color: white;
+  font-size: 14px;
+}
+
+/* 그래프 영역 */
+.manager .graph-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 200px;
+  background-color: white;
+  border: 1px solid var(--gray);
+  border-radius: 20px;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+.manager .graph-text {
+  font-family: "Pretendard Variable-Midium";
+  font-weight: 700;
+  color: #888;
+  font-size: 16px;
+}
+

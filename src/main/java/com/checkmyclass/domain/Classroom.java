@@ -1,4 +1,4 @@
-package com.checkmyclass.checkmyclass.domain;
+package com.checkmyclass.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
