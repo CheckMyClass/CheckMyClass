@@ -33,8 +33,7 @@ public class MainController {
     public String registerProcess(User user) {
         // 화면에서 넘어온 user 데이터를 서비스로 넘겨서 DB에 저장!
         userService.registerUser(user);
-
-        // 저장이 끝나면 다시 로그인 화면("/")으로 튕겨내기!
+        
         return "redirect:/";
     }
 }
