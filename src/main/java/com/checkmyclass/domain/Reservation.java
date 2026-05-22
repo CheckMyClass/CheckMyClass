@@ -43,4 +43,9 @@ public class Reservation {
 
     @Column(name = "create_time", updatable = false)
     private LocalDateTime createTime;
+
+    // 관리자 페이지에서 승인/반려 처리를 위한 상태 변경 메서드
+    public void updateStatus(ReservationStatus status) {
+        this.status = status;
+    }
 }
