@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "class") // DB 테이블 이름은 class
+@Table(name = "classroom") // DB 테이블 이름은 class
 @Getter
 @NoArgsConstructor
 public class Classroom { // 자바 클래스 이름은 Classroom으로 회피!
