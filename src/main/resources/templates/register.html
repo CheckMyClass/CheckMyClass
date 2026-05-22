@@ -4,17 +4,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
   <title>CheckMyClass - 회원가입</title>
-  <link rel="stylesheet" href="/static/global.css" />
-  <link rel="stylesheet" href="/static/styleguide.css" />
-  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="stylesheet" href="/global.css" />
+  <link rel="stylesheet" href="/styleguide.css" />
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
 <div class="register">
   <header class="header">
     <div class="frame">
-      <img class="checkmyclass-x" src="/static/Logo_img.png" alt="CheckMyClass 로고" />
+      <img class="checkmyclass-x" src="/Logo_img.png" alt="CheckMyClass 로고" />
     </div>
-    <img class="check-my-class" src="/static/Logo_eng.png" alt="Check My Class" />
+    <img class="check-my-class" src="/Logo_eng.png" alt="Check My Class" />
   </header>
   <main class="view">
     <section class="login">
@@ -22,7 +22,7 @@
         회원가입을 위한 정보를 입력해주세요<br />비밀번호는 암호화되어 보관됩니다
       </p>
 
-      <form class="info" method="post" action="/register" novalidate>
+      <form class="info" method="post" action="/register">
         <label class="div" for="name">이름</label>
         <div class="input">
           <input class="frame-2" type="text" id="name" name="userName" required aria-required="true" autocomplete="name" />
@@ -53,7 +53,14 @@
 
         <label class="text-wrapper-2" for="department">학과</label>
         <div class="input">
-          <input class="frame-2" type="text" id="department" name="majorName" required aria-required="true" autocomplete="organization" />
+          <select class="frame-2" id="department" name="majorName" required aria-required="true" style="width: 100%; border: none; outline: none; background: transparent;">
+            <option value="" disabled selected>학과를 선택해주세요</option>
+            <option value="응용소프트웨어공학과">응용소프트웨어공학과</option>
+            <option value="컴퓨터소프트웨어공학과">컴퓨터소프트웨어공학과</option>
+            <option value="게임공학과">게임공학과</option>
+            <option value="인공지능공학과">인공지능공학과</option>
+            <option value="컴퓨터공학과">컴퓨터공학과</option>
+          </select>
         </div>
 
         <div class="button">
@@ -65,5 +72,10 @@
     </section>
   </main>
 </div>
+
+<script th:if="${errorMessage != null}">
+  alert('[[${errorMessage}]]');
+</script>
+
 </body>
 </html>
