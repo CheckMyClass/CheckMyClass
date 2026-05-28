@@ -82,6 +82,27 @@ public class MainController {
         }
 
         // 🌟 나중에 학생/교수용 메인 화면(예: /dashboard)을 만들면 꼭 여기를 바꿔줘!
-        return "redirect:/";
+        return "redirect:/main";
+    }
+
+    // 🌟 5. 일반 회원(학생/교수) 메인 페이지 띄우기
+    @GetMapping("/main")
+    public String mainPage(HttpSession session, Model model) {
+        // 1. 세션에서 로그인한 유저 아이디(학번) 꺼내기
+        String studentNumber = (String) session.getAttribute("userId");
+
+        // 2. 로그인이 안 되어있다면 얄짤없이 로그인 화면으로 쫓아내기 (PHP의 첫 번째 if문 역할)
+        if (studentNumber == null) {
+            model.addAttribute("errorMessage", "로그인이 필요합니다.");
+            return "login";
+        }
+
+        // 3. DB에서 유저의 모든 정보(이름, 학과, 역할 등) 가져오기
+        User user = userService.getUserInfo(studentNumber); // 💡 (주의) UserService에 이 메서드를 만들어야 해!
+
+        // 4. 화면(HTML)에 유저 정보 넘겨주기
+        model.addAttribute("user", user);
+
+        return "main"; // main.html 띄우기
     }
 }

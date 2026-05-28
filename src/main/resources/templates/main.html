@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>CheckMyClass - 강의실 예약 시스템</title>
+    <link rel="stylesheet" href="/globals.css" />
+    <link rel="stylesheet" href="/styleguide.css" />
+    <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+<main class="main">
+    <header class="header">
+        <div class="frame">
+            <img class="checkmyclass-x" src="/Logo_img.png" alt="CheckMyClass 로고" />
+        </div>
+        <img class="check-my-class" src="/Logo_eng.png" alt="Check My Class" />
+    </header>
+
+    <section class="profile" aria-label="사용자 프로필" th:onclick="|location.href='@{/mypage}'|" style="cursor: pointer;">
+        <div class="div">
+            <div class="view" role="img" aria-label="프로필 이미지">
+                <img class="deu" src="/Logo_dongeui.png" alt="Logo_dongeui" />
+            </div>
+            <p class="text-wrapper">
+                <span th:text="${user.major != null ? user.major.majorName : '소속 학과 없음'}"></span><br />
+                <span th:text="${user.userName}"></span>
+            </p>
+        </div>
+        <div class="div-wrapper">
+        <span class="text-wrapper-2"
+              th:text="${user.role.name() == 'STUDENT' ? '학생회원' : (user.role.name() == 'PROFESSOR' ? '교직원' : '회원')}">
+        </span>
+        </div>
+    </section>
+
+    <nav class="view-2" aria-label="위치 선택">
+        <button class="frame-2" type="button" aria-label="산학협력관 선택">
+            <span class="text-wrapper-3">산학협력관</span>
+        </button>
+        <button class="frame-2" type="button" aria-label="4층 선택">
+            <span class="text-wrapper-3">4층</span>
+        </button>
+    </nav>
+
+    <span class="text-wrapper-3">강의실 구조도</span>
+
+    <section aria-label="강의실 구조도" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <div class="map-container" style="width: 90%; max-width: 100%;">
+            <div class="map-wrapper" id="mapWrapper">
+                <img src="/map.png" alt="강의실 구조도 이미지" class="map-image" style="width: 100%; height: auto;">
+                <div class="gradient-overlay"></div>
+            </div>
+        </div>
+        <button type="button" id="toggleMapBtn" class="more-btn">
+            지도 전체보기 ∨
+        </button>
+    </section>
+
+    <button class="view-4" type="button" aria-label="예약하기" th:onclick="|location.href='@{/reservation}'|">
+        <span class="text-wrapper-4">예약하기</span>
+    </button>
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const mapWrapper = document.getElementById("mapWrapper");
+        const toggleBtn = document.getElementById("toggleMapBtn");
+
+        toggleBtn.addEventListener("click", () => {
+            mapWrapper.classList.toggle("expanded");
+            if (mapWrapper.classList.contains("expanded")) {
+                toggleBtn.textContent = "지도 접기 ∧";
+            } else {
+                toggleBtn.textContent = "지도 전체보기 ∨";
+            }
+        });
+    });
+</script>
+</body>
+</html>

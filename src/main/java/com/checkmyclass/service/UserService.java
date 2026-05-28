@@ -69,4 +69,7 @@ public class UserService {
 
         return null; // 로그인 실패
     }
+
+    public User getUserInfo(String studentNumber) {
+        return userRepository.findByStudentNumber(studentNumber).orElse(null); }
 }
