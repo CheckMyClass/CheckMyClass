@@ -6,10 +6,12 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
+import lombok.Setter;
 
 @Entity
 @Table(name = "reservation")
 @Getter
+@Setter
 @NoArgsConstructor
 public class Reservation {
 
@@ -43,4 +45,9 @@ public class Reservation {
 
     @Column(name = "create_time", updatable = false)
     private LocalDateTime createTime;
+
+    // 관리자 페이지에서 승인/반려 처리를 위한 상태 변경 메서드
+    public void updateStatus(ReservationStatus status) {
+        this.status = status;
+    }
 }

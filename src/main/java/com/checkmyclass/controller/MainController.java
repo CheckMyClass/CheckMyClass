@@ -1,13 +1,16 @@
 package com.checkmyclass.controller;
 
+import com.checkmyclass.domain.User; // 🌟 이거 하나 빠져있었어!
 import com.checkmyclass.dto.UserRegisterDto;
 import com.checkmyclass.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -25,7 +28,7 @@ public class MainController {
         return "login";
     }
 
-    // 🌟 2. 회원가입 화면 띄우기 (GET) - 이게 지워져서 405 에러가 났던 거야!
+    // 2. 회원가입 화면 띄우기 (GET)
     @GetMapping("/register")
     public String register() {
         return "register";
@@ -35,7 +38,6 @@ public class MainController {
     @PostMapping("/register")
     public String registerProcess(@Valid UserRegisterDto dto, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 
-        // 1. DTO 조건 검사에서 걸린 에러가 있는지 확인!
         if (bindingResult.hasErrors()) {
             String errorMessage = bindingResult.getAllErrors().get(0).getDefaultMessage();
             model.addAttribute("errorMessage", errorMessage);
@@ -43,10 +45,7 @@ public class MainController {
         }
 
         try {
-            // 2. 조건 검사를 무사히 통과하면 DB 저장 시도
             userService.registerUser(dto);
-
-            // 성공 팝업과 함께 로그인 화면으로 점프
             redirectAttributes.addFlashAttribute("message", "회원가입이 완료되었습니다! 로그인해주세요.");
             return "redirect:/";
 
@@ -58,5 +57,52 @@ public class MainController {
             model.addAttribute("errorMessage", "회원가입 중 서버 오류가 발생했습니다.");
             return "register";
         }
+    }
+
+    // 4. 로그인 데이터 처리 (POST)
+    @PostMapping("/login")
+    public String loginProcess(@RequestParam String studentNumber,
+                               @RequestParam String userPassword,
+                               HttpSession session,
+                               Model model) {
+
+        User loginUser = userService.login(studentNumber, userPassword);
+
+        if (loginUser == null) {
+            model.addAttribute("errorMessage", "학번 또는 비밀번호가 일치하지 않습니다.");
+            return "login";
+        }
+
+        session.setAttribute("userId", loginUser.getUserId());
+        session.setAttribute("role", loginUser.getRole().name());
+
+        String userRole = loginUser.getRole().name();
+        if ("ADMIN".equals(userRole) || "STAFF".equals(userRole)) {
+            return "redirect:/manager";
+        }
+
+        // 🌟 나중에 학생/교수용 메인 화면(예: /dashboard)을 만들면 꼭 여기를 바꿔줘!
+        return "redirect:/main";
+    }
+
+    // 🌟 5. 일반 회원(학생/교수) 메인 페이지 띄우기
+    @GetMapping("/main")
+    public String mainPage(HttpSession session, Model model) {
+        // 1. 세션에서 로그인한 유저 아이디(학번) 꺼내기
+        String studentNumber = (String) session.getAttribute("userId");
+
+        // 2. 로그인이 안 되어있다면 얄짤없이 로그인 화면으로 쫓아내기 (PHP의 첫 번째 if문 역할)
+        if (studentNumber == null) {
+            model.addAttribute("errorMessage", "로그인이 필요합니다.");
+            return "login";
+        }
+
+        // 3. DB에서 유저의 모든 정보(이름, 학과, 역할 등) 가져오기
+        User user = userService.getUserInfo(studentNumber); // 💡 (주의) UserService에 이 메서드를 만들어야 해!
+
+        // 4. 화면(HTML)에 유저 정보 넘겨주기
+        model.addAttribute("user", user);
+
+        return "main"; // main.html 띄우기
     }
 }
