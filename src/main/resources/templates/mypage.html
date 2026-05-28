@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>CheckMyClass - 마이페이지</title>
@@ -13,7 +12,7 @@
 <main class="mypage">
     <header class="header">
         <div class="frame">
-            <a href="/"><img class="checkmyclass-x" src="/Logo_img.png" alt="CheckMyClass 로고" /></a>
+            <a href="/main"><img class="checkmyclass-x" src="/Logo_img.png" alt="CheckMyClass 로고" /></a>
         </div>
         <img class="check-my-class" src="/Logo_eng.png" alt="Check My Class" />
     </header>
@@ -24,12 +23,12 @@
                 <img class="deu" src="/Logo_dongeui.png" alt="Logo_dongeui" />
             </div>
             <p class="text-wrapper">
-                <span th:text="${session.department != null ? session.department : '컴퓨터공학과'}">학과명</span><br />
-                <span th:text="${session.user_name != null ? session.user_name : '테스트유저'}">사용자 이름</span>
+                <span th:text="${user.major != null ? user.major.majorName : '소속 학과 없음'}">학과명</span><br />
+                <span th:text="${user.userName}">사용자 이름</span>
             </p>
         </div>
         <div class="div-wrapper">
-            <span class="text-wrapper-2" th:text="${session.role == 'STUDENT' ? '학생회원' : '교직원'}">학생회원</span>
+            <span class="text-wrapper-2" th:text="${user.role.name() == 'STUDENT' ? '학생회원' : (user.role.name() == 'PROFESSOR' ? '교직원' : '회원')}">회원등급</span>
         </div>
     </section>
 
@@ -56,7 +55,7 @@
                 <div class="frame-3">
                     <dt class="text-wrapper-4">강의실</dt>
                     <dd class="input">
-                        <span class="text-wrapper-5" th:text="${res.classroom.id} + '호'">401호</span>
+                        <span class="text-wrapper-5" th:text="${res.classroom.classNumber} + '호'">401호</span>
                     </dd>
                 </div>
                 <div class="frame-3">
@@ -67,12 +66,11 @@
                 </div>
             </dl>
 
-            <div th:class="${res.status == 'WAITING' ? 'status-waiting' : (res.status == 'APPROVED' ? 'status-approved' : 'status-rejected')}"
-                 role="status" th:aria-label="'예약 상태: ' + ${res.status}">
-              <span class="text-wrapper-7"
-                    th:text="${res.status == 'WAITING' ? '대기' : (res.status == 'APPROVED' ? '승인됨' : '반려')}">
-                  대기
-              </span>
+            <div th:class="${res.status.name() == 'WAITING' ? 'status-waiting' : (res.status.name() == 'APPROVED' ? 'status-approved' : 'status-rejected')}"
+                 role="status" th:aria-label="'예약 상태: ' + ${res.status.name()}">
+                <span class="text-wrapper-7"
+                      th:text="${res.status.name() == 'WAITING' ? '대기' : (res.status.name() == 'APPROVED' ? '승인' : '반려')}">
+                </span>
             </div>
         </article>
     </div>
@@ -82,5 +80,10 @@
     </div>
 
 </main>
+
+<script th:if="${message}" th:inline="javascript">
+    alert([[${message}]]);
+</script>
+
 </body>
 </html>
