@@ -41,9 +41,9 @@
     <main class="reservation">
         <header class="header">
             <div class="frame">
-                <a href="/main"><img class="checkmyclass-x" src="/source/Logo_img.png" alt="Logo" /></a>
+                <a href="/main"><img class="checkmyclass-x" src="/Logo_img.png" alt="Logo" /></a>
             </div>
-            <img class="check-my-class" src="/source/Logo_eng.png" alt="CheckMyClass" />
+            <img class="check-my-class" src="/Logo_eng.png" alt="CheckMyClass" />
         </header>
 
         <section class="view" aria-label="페이지 제목">
@@ -111,8 +111,12 @@
         </div>
 
         <figure class="frame-9">
-            <img th:if="${room.imageUrl != null and room.imageUrl != ''}" th:src="${room.imageUrl}" alt="강의실 이미지" style="width:100%; height:100%; object-fit:cover;">
-            <div th:unless="${room.imageUrl != null and room.imageUrl != ''}" style="width:100%; height:100%; background:#eee; display:flex; align-items:center; justify-content:center;">
+            <img th:src="@{'/' + ${room.classNumber} + '.jpg'}"
+                 alt="강의실 이미지"
+                 style="width:100%; height:100%; object-fit:cover;"
+                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+            <div style="width:100%; height:100%; background:#eee; display:none; align-items:center; justify-content:center;">
                 <span class="text-wrapper-6" style="color:#888;">이미지 없음</span>
             </div>
         </figure>

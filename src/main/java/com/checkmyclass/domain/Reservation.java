@@ -6,10 +6,12 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
+import lombok.Setter;
 
 @Entity
 @Table(name = "reservation")
 @Getter
+@Setter
 @NoArgsConstructor
 public class Reservation {
 
