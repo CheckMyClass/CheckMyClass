@@ -9,18 +9,61 @@
     <link rel="stylesheet" href="/style.css" />
 
     <style>
-        .modal {
-            display: none; position: fixed; z-index: 1000; left: 0; top: 0;
-            width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4);
+        /* =========================================
+           🌟 1. 공통 사이드바 & 모바일 반응형
+           ========================================= */
+        .sidebar { position: fixed; top: 0; left: 0; width: 240px; height: 100vh; background-color: #ffffff; box-shadow: 2px 0 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; padding-top: 30px; z-index: 9999; }
+        .sidebar-logo { text-align: center; margin-bottom: 30px; }
+        .sidebar-logo img { width: 140px; cursor: pointer; }
+
+        .sidebar-menu { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+        .sidebar-menu a { display: block; padding: 15px 30px; color: #555; text-decoration: none; font-size: 16px; font-weight: bold; transition: all 0.3s ease; border-radius: 0 30px 30px 0; margin-right: 20px; }
+        .sidebar-menu a:hover, .sidebar-menu a.active { background-color: var(--main, #0056b3); color: #ffffff; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); }
+
+        /* =========================================
+           🌟 2. 본문 영역 & 피그마 충돌 완벽 방어
+           ========================================= */
+        .content-area {
+            margin-left: 240px;
+            width: calc(100% - 240px);
+            padding: 30px 40px;
+            min-height: 100vh;
+            background-color: #ffffff;
+            display: flex; flex-direction: column; align-items: center;
         }
-        .modal-content {
-            background-color: #fefefe; margin: 15% auto; padding: 20px;
-            border: 1px solid #888; width: 85%; max-width: 400px; border-radius: 8px; position: relative;
+
+        .reservation {
+            width: 100% !important;
+            max-width: 800px !important;
+            background-color: transparent !important;
+            display: flex !important; flex-direction: column !important; align-items: center !important;
         }
-        .close-btn {
-            color: #aaa; float: right; font-size: 28px; font-weight: bold;
-            position: absolute; top: 10px; right: 20px; cursor: pointer;
+
+        .top-logo-container { width: 100%; text-align: center; margin-bottom: 10px; display: flex; justify-content: center; }
+        .top-logo { height: 35px; object-fit: contain; }
+
+        /* =========================================
+           📱 3. 모바일 반응형
+           ========================================= */
+        .hamburger-btn { display: none; position: fixed; top: 15px; left: 15px; z-index: 10000; background-color: var(--main, #0056b3); color: white; border: none; padding: 10px 15px; font-size: 18px; border-radius: 8px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 9998; }
+
+        @media (max-width: 768px) {
+            .hamburger-btn { display: block; }
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease-in-out; }
+            .sidebar.active { transform: translateX(0); }
+            .content-area { margin-left: 0; width: 100%; padding-top: 70px; padding-left: 15px; padding-right: 15px; }
+            .sidebar-overlay.active { display: block; }
+            .top-logo { height: 28px; }
+            .top-logo-container { margin-bottom: 5px; }
         }
+
+        /* =========================================
+           🛠️ 4. 기존 예약 모달 및 폼 CSS
+           ========================================= */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4); }
+        .modal-content { background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 85%; max-width: 400px; border-radius: 8px; position: relative; }
+        .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; position: absolute; top: 10px; right: 20px; cursor: pointer; }
         .close-btn:hover { color: #000; }
         .date-picker-wrapper { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 100%; height: 100%; cursor: pointer; }
         .transparent-trigger { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 100; cursor: pointer; }
@@ -28,7 +71,52 @@
         .modal-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 16px; }
         .modal-label { font-weight: bold; color: #333; }
         .modal-value { font-weight: normal; color: #555; }
-        .confirm-btn { width: 100%; padding: 12px; background-color: var(--main); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 16px; }
+        .confirm-btn { width: 100%; padding: 12px; background-color: var(--main, #0056b3); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 16px; }
+
+        .reservation button.time-confirm-btn {
+            display: inline-flex !important;
+            align-items: center !important; justify-content: center !important;
+            padding: 0 24px !important;
+            height: 42px !important;
+            background-color: var(--main, #0056b3) !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 21px !important;
+            font-weight: bold !important;
+            cursor: pointer !important;
+            white-space: nowrap !important;
+            transition: all 0.2s ease-in-out; font-size: 15px !important;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
+        }
+        .reservation button.time-confirm-btn:hover {
+            background-color: #004494 !important;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+            transform: translateY(-1px);
+        }
+
+        /* 🌟 강의실 카드 고정 */
+        .frame-6 {
+            width: 100% !important;
+            max-width: 380px !important;
+            margin: 0 auto 20px auto !important;
+            background-color: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex; flex-direction: column;
+        }
+        .frame-7 {
+            width: 100% !important;
+            box-sizing: border-box !important;
+            padding: 15px 20px !important;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .frame-9 {
+            width: 100% !important;
+            height: 200px !important;
+            margin: 0 !important;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -37,113 +125,133 @@
     alert([[${errorMessage}]]);
 </script>
 
-<form id="searchForm" th:action="@{/reservation}" method="GET">
+<button id="hamburgerBtn" class="hamburger-btn">☰ 메뉴</button>
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+<nav class="sidebar">
+    <div class="sidebar-logo">
+        <a th:href="@{/main}"><img src="/Logo_img.png" alt="CheckMyClass 로고" /></a>
+    </div>
+    <ul class="sidebar-menu">
+        <li><a th:href="@{/main}">🏠 메인 홈</a></li>
+        <li><a th:href="@{/reservation}" class="active">📅 예약 신청</a></li>
+        <li><a th:href="@{/mypage/history}">📋 예약 현황</a></li>
+        <li><a th:href="@{/mypage/profile}">👤 마이페이지</a></li>
+    </ul>
+</nav>
+
+<div class="content-area">
+
+    <div class="top-logo-container">
+        <img src="/Logo_eng.png" alt="Check My Class" class="top-logo" />
+    </div>
+
     <main class="reservation">
-        <header class="header">
-            <div class="frame">
-                <a href="/main"><img class="checkmyclass-x" src="/Logo_img.png" alt="Logo" /></a>
-            </div>
-            <img class="check-my-class" src="/Logo_eng.png" alt="CheckMyClass" />
-        </header>
 
-        <section class="view" aria-label="페이지 제목">
-            <h1 class="text-wrapper">예약 신청</h1>
-        </section>
+        <form id="searchForm" th:action="@{/reservation}" method="GET" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
 
-        <section class="div" role="group" aria-label="장비 필터">
-            <label class="filter-label">
-                <input type="checkbox" name="filter" value="pc" class="hidden-input" th:checked="${#lists.contains(filters, 'pc')}" onchange="this.form.submit()">
-                <div th:class="${#lists.contains(filters, 'pc') ? 'div-wrapper' : 'frame-2'}">
-                    <span th:class="${#lists.contains(filters, 'pc') ? 'text-wrapper-2' : 'text-wrapper-3'}">PC(실습)</span>
+            <section class="view" aria-label="페이지 제목" style="margin-bottom: 20px;">
+                <h1 class="text-wrapper" style="font-size: 24px;">예약 신청</h1>
+            </section>
+
+            <section class="div" role="group" aria-label="장비 필터" style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <label class="filter-label">
+                    <input type="checkbox" name="filter" value="pc" class="hidden-input" th:checked="${#lists.contains(filters, 'pc')}" onchange="this.form.submit()">
+                    <div th:class="${#lists.contains(filters, 'pc') ? 'div-wrapper' : 'frame-2'}">
+                        <span th:class="${#lists.contains(filters, 'pc') ? 'text-wrapper-2' : 'text-wrapper-3'}">PC(실습)</span>
+                    </div>
+                </label>
+                <label class="filter-label">
+                    <input type="checkbox" name="filter" value="projector" class="hidden-input" th:checked="${#lists.contains(filters, 'projector')}" onchange="this.form.submit()">
+                    <div th:class="${#lists.contains(filters, 'projector') ? 'div-wrapper' : 'frame-2'}">
+                        <span th:class="${#lists.contains(filters, 'projector') ? 'text-wrapper-2' : 'text-wrapper-3'}">빔프로젝터</span>
+                    </div>
+                </label>
+                <label class="filter-label">
+                    <input type="checkbox" name="filter" value="board" class="hidden-input" th:checked="${#lists.contains(filters, 'board')}" onchange="this.form.submit()">
+                    <div th:class="${#lists.contains(filters, 'board') ? 'div-wrapper' : 'frame-2'}">
+                        <span th:class="${#lists.contains(filters, 'board') ? 'text-wrapper-2' : 'text-wrapper-3'}">전자칠판</span>
+                    </div>
+                </label>
+            </section>
+
+            <section class="frame-3" style="width: 100%; max-width: 400px; justify-content: center; margin-bottom: 10px;">
+                <div class="date-picker-wrapper" onclick="document.getElementById('dateInput').showPicker()">
+                    <input type="date" id="dateInput" name="date" class="transparent-trigger" th:value="${date}">
+                    <time class="text-wrapper-4" id="dateDisplay" th:text="${dateDisplay + ' ▼'}"></time>
                 </div>
-            </label>
-            <label class="filter-label">
-                <input type="checkbox" name="filter" value="projector" class="hidden-input" th:checked="${#lists.contains(filters, 'projector')}" onchange="this.form.submit()">
-                <div th:class="${#lists.contains(filters, 'projector') ? 'div-wrapper' : 'frame-2'}">
-                    <span th:class="${#lists.contains(filters, 'projector') ? 'text-wrapper-2' : 'text-wrapper-3'}">빔프로젝터</span>
+            </section>
+
+            <div style="display: flex; align-items: center; gap: 10px; width: 100%; max-width: 400px; margin-bottom: 40px;">
+                <section class="frame-4" style="flex: 1; margin-bottom: 0;">
+                    <div class="frame-5"><span class="text-wrapper-4">시간</span></div>
+                    <div class="frame-3">
+                        <div class="date-picker-wrapper" onclick="document.getElementById('startTimeInput').showPicker()">
+                            <input type="time" id="startTimeInput" name="start_time" class="transparent-trigger" th:value="${start_time}">
+                            <time class="text-wrapper-4" id="startTimeDisplay" th:text="${start_time}"></time>
+                        </div>
+                    </div>
+                    <div class="frame-5"><span class="text-wrapper-4">~</span></div>
+                    <div class="frame-3">
+                        <div class="date-picker-wrapper" onclick="document.getElementById('endTimeInput').showPicker()">
+                            <input type="time" id="endTimeInput" name="end_time" class="transparent-trigger" th:value="${end_time}">
+                            <time class="text-wrapper-4" id="endTimeDisplay" th:text="${end_time}"></time>
+                        </div>
+                    </div>
+                </section>
+
+                <button type="submit" class="time-confirm-btn">확인</button>
+            </div>
+        </form>
+
+        <th:block th:if="${not #lists.isEmpty(classrooms)}">
+            <article th:each="room : ${classrooms}" class="frame-6" th:data-room-id="${room.id}" th:data-room-name="${room.classNumber}">
+
+                <div class="frame-7">
+                    <div class="frame-5"><h2 class="text-wrapper-5" th:text="${room.classNumber + '호'}"></h2></div>
+                    <div class="frame-8" style="display: flex; gap: 5px;">
+                        <div class="frame-3"><time class="text-wrapper-4 start-time" th:text="${start_time}"></time></div>
+                        <div class="frame-5"><span class="text-wrapper-4">~</span></div>
+                        <div class="frame-3"><time class="text-wrapper-4 end-time" th:text="${end_time}"></time></div>
+                    </div>
                 </div>
-            </label>
-            <label class="filter-label">
-                <input type="checkbox" name="filter" value="board" class="hidden-input" th:checked="${#lists.contains(filters, 'board')}" onchange="this.form.submit()">
-                <div th:class="${#lists.contains(filters, 'board') ? 'div-wrapper' : 'frame-2'}">
-                    <span th:class="${#lists.contains(filters, 'board') ? 'text-wrapper-2' : 'text-wrapper-3'}">전자칠판</span>
+
+                <figure class="frame-9">
+                    <img th:src="@{'/' + ${room.classNumber} + '.jpg'}"
+                         alt="강의실 이미지"
+                         style="width:100%; height:100%; object-fit:cover;"
+                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                    <div style="width:100%; height:100%; background:#eee; display:none; align-items:center; justify-content:center;">
+                        <span class="text-wrapper-6" style="color:#888;">이미지 없음</span>
+                    </div>
+                </figure>
+
+                <div class="frame-7">
+                    <p class="p" style="font-size: 14px; margin: 0; color: #555;">
+                        <span th:text="${room.capacityNumber + '명'}"></span>
+                        <span th:if="${room.isPractical != null and room.isPractical}"> / PC(실습)</span>
+                        <span th:if="${room.boardType == '전자칠판'}"> / 전자칠판</span>
+                        <span th:if="${room.boardType == '빔프로젝터'}"> / 빔프로젝터</span>
+                    </p>
+                    <button class="view-2 reservation-btn" type="button" style="border: none; cursor: pointer; border-radius: 20px; padding: 10px 20px; background-color: var(--main, #0056b3); box-shadow: 0 2px 5px rgba(0,0,0,0.15); transition: background-color 0.2s;">
+                        <span class="text-wrapper" style="font-weight: bold; color: white;">예약하기</span>
+                    </button>
                 </div>
-            </label>
-        </section>
+            </article>
+        </th:block>
 
-        <section class="frame-3" style="width: 60%; justify-content: center;">
-            <div class="date-picker-wrapper" onclick="document.getElementById('dateInput').showPicker()">
-                <input type="date" id="dateInput" name="date" class="transparent-trigger"
-                       th:value="${date}" onchange="this.form.submit()">
-                <time class="text-wrapper-4" th:text="${dateDisplay + ' ▼'}"></time>
-            </div>
-        </section>
+        <th:block th:if="${#lists.isEmpty(classrooms)}">
+            <p style="text-align:center; padding:50px; color:#666;">조건에 맞는 강의실이 없습니다.</p>
+        </th:block>
 
-        <section class="frame-4">
-            <div class="frame-5"><span class="text-wrapper-4">시간</span></div>
-            <div class="frame-3">
-                <div class="date-picker-wrapper" onclick="document.getElementById('startTimeInput').showPicker()">
-                    <input type="time" id="startTimeInput" name="start_time" class="transparent-trigger"
-                           th:value="${start_time}" onchange="this.form.submit()">
-                    <time class="text-wrapper-4" th:text="${start_time}"></time>
-                </div>
-            </div>
-            <div class="frame-5"><span class="text-wrapper-4">~</span></div>
-            <div class="frame-3">
-                <div class="date-picker-wrapper" onclick="document.getElementById('endTimeInput').showPicker()">
-                    <input type="time" id="endTimeInput" name="end_time" class="transparent-trigger"
-                           th:value="${end_time}" onchange="this.form.submit()">
-                    <time class="text-wrapper-4" th:text="${end_time}"></time>
-                </div>
-            </div>
-        </section>
-</form>
-
-<th:block th:if="${not #lists.isEmpty(classrooms)}">
-    <article th:each="room : ${classrooms}" class="frame-6" th:data-room-id="${room.id}" th:data-room-name="${room.classNumber}">
-        <div class="frame-7">
-            <div class="frame-5"><h2 class="text-wrapper-5" th:text="${room.classNumber + '호'}"></h2></div>
-            <div class="frame-8">
-                <div class="frame-3"><time class="text-wrapper-4 start-time" th:text="${start_time}"></time></div>
-                <div class="frame-5"><span class="text-wrapper-4">~</span></div>
-                <div class="frame-3"><time class="text-wrapper-4 end-time" th:text="${end_time}"></time></div>
-            </div>
-        </div>
-
-        <figure class="frame-9">
-            <img th:src="@{'/' + ${room.classNumber} + '.jpg'}"
-                 alt="강의실 이미지"
-                 style="width:100%; height:100%; object-fit:cover;"
-                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-
-            <div style="width:100%; height:100%; background:#eee; display:none; align-items:center; justify-content:center;">
-                <span class="text-wrapper-6" style="color:#888;">이미지 없음</span>
-            </div>
-        </figure>
-
-        <div class="frame-7">
-            <p class="p" style="font-size: 14px;">
-                <span th:text="${room.capacityNumber + '명'}"></span>
-                <span th:if="${room.isPractical != null and room.isPractical}"> / PC(실습)</span>
-                <span th:if="${room.boardType == '전자칠판'}"> / 전자칠판</span>
-                <span th:if="${room.boardType == '빔프로젝터'}"> / 빔프로젝터</span>
-            </p>
-            <button class="view-2 reservation-btn" type="button">
-                <span class="text-wrapper">예약하기</span>
-            </button>
-        </div>
-    </article>
-</th:block>
-
-<th:block th:if="${#lists.isEmpty(classrooms)}">
-    <p style="text-align:center; padding:50px; color:#666;">조건에 맞는 강의실이 없습니다.</p>
-</th:block>
-</main>
+    </main>
+</div>
 
 <div id="reservationModal" class="modal">
     <div class="modal-content">
         <span class="close-btn">&times;</span>
-        <h2 style="text-align:center; margin-bottom:20px; color:var(--main);">예약 정보 확인</h2>
+        <h2 style="text-align:center; margin-bottom:20px; color:var(--main, #0056b3);">예약 정보 확인</h2>
 
         <div class="modal-row"><span class="modal-label">강의실:</span><span class="modal-value" id="modal-room-display"></span></div>
         <div class="modal-row"><span class="modal-label">날짜:</span><span class="modal-value" th:text="${dateDisplay}"></span></div>
@@ -167,6 +275,33 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+        // 1. 모바일 사이드바
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const sidebar = document.querySelector(".sidebar");
+        const overlay = document.getElementById("sidebarOverlay");
+
+        hamburgerBtn.addEventListener("click", () => {
+            sidebar.classList.add("active"); overlay.classList.add("active"); hamburgerBtn.style.display = "none";
+        });
+        overlay.addEventListener("click", () => {
+            sidebar.classList.remove("active"); overlay.classList.remove("active"); hamburgerBtn.style.display = "block";
+        });
+
+        // 2. 값 수정 시 텍스트 즉시 미러링
+        document.getElementById('dateInput')?.addEventListener('change', function() {
+            const d = new Date(this.value);
+            if (!isNaN(d)) {
+                document.getElementById('dateDisplay').textContent = `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일 ▼`;
+            }
+        });
+        document.getElementById('startTimeInput')?.addEventListener('change', function() {
+            document.getElementById('startTimeDisplay').textContent = this.value;
+        });
+        document.getElementById('endTimeInput')?.addEventListener('change', function() {
+            document.getElementById('endTimeDisplay').textContent = this.value;
+        });
+
+        // 3. 모달 및 폼 제출 로직
         const modal = document.getElementById("reservationModal");
         const closeBtn = modal.querySelector(".close-btn");
         const reservationBtns = document.querySelectorAll(".reservation-btn");
@@ -174,7 +309,6 @@
         const modalRoomDisplay = document.getElementById("modal-room-display");
         const modalTimeDisplay = document.getElementById("modal-time-display");
         const modalClassIdInput = document.getElementById("modal-class-id");
-
         const inputPurpose = document.getElementById("input-purpose");
         const formPurpose = document.getElementById("form-purpose");
         const realConfirmBtn = document.getElementById("realConfirmBtn");
@@ -183,25 +317,17 @@
         reservationBtns.forEach((button) => {
             button.addEventListener("click", (event) => {
                 const article = event.target.closest(".frame-6");
-                const roomName = article.getAttribute("data-room-name");
-                const roomId = article.getAttribute("data-room-id");
-                const startTime = article.querySelector(".start-time").textContent;
-                const endTime = article.querySelector(".end-time").textContent;
-
-                modalRoomDisplay.textContent = roomName + "호";
-                modalTimeDisplay.textContent = `${startTime} ~ ${endTime}`;
-                modalClassIdInput.value = roomId;
+                modalRoomDisplay.textContent = article.getAttribute("data-room-name") + "호";
+                modalTimeDisplay.textContent = `${article.querySelector(".start-time").textContent} ~ ${article.querySelector(".end-time").textContent}`;
+                modalClassIdInput.value = article.getAttribute("data-room-id");
                 inputPurpose.value = "";
-
                 modal.style.display = "block";
             });
         });
 
         realConfirmBtn.addEventListener("click", () => {
             if(inputPurpose.value.trim() === "") {
-                alert("대여 목적을 입력해주세요.");
-                inputPurpose.focus();
-                return;
+                alert("대여 목적을 입력해주세요."); inputPurpose.focus(); return;
             }
             formPurpose.value = inputPurpose.value;
             confirmForm.submit();

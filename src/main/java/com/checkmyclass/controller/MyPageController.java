@@ -1,40 +1,69 @@
 package com.checkmyclass.controller;
 
 import com.checkmyclass.domain.Reservation;
-import com.checkmyclass.domain.User; // 🌟 추가
+import com.checkmyclass.domain.User;
 import com.checkmyclass.service.MyPageService;
-import com.checkmyclass.service.UserService; // 🌟 유저 정보 가져오기 위해 추가
+import com.checkmyclass.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.util.List;
 
 @Controller
-@RequiredArgsConstructor // 🌟 팀원 코드의 생성자 덩어리를 이 한 줄로 깔끔하게 압축!
+@RequiredArgsConstructor
 public class MyPageController {
 
     private final MyPageService myPageService;
-    private final UserService userService; // 🌟 내 프로필 정보 가져올 서비스 추가
+    private final UserService userService;
 
-    @GetMapping("/mypage")
-    public String myPage(HttpSession session, Model model) {
-        // 1. 현재 로그인한 유저 확인 (세션 키 이름은 로그인 세팅과 꼭 맞춰야 해!)
-        String studentNumber = (String) session.getAttribute("userId"); // 🌟 아까 메인에서 쓰던 방식으로 통일
+    // 🌟 1. 예약 현황 페이지 (기존 mypage 로직 -> 이름을 mypage-history로 변경)
+    @GetMapping("/mypage/history")
+    public String myPageHistory(HttpSession session, Model model) {
+        String studentNumber = (String) session.getAttribute("userId");
+        if (studentNumber == null) return "redirect:/";
 
-        if (studentNumber == null) {
-            return "redirect:/"; // 로그인 안 되어있으면 튕겨내기
-        }
-
-        // 2. 내 프로필 정보 가져와서 화면에 넘기기 (이게 없으면 화면 터짐!)
         User user = userService.getUserInfo(studentNumber);
         model.addAttribute("user", user);
 
-        // 3. 내 예약 내역 가져오기 (팀원이 짠 로직 그대로 활용되게 PK인 id를 넘김)
         List<Reservation> historyList = myPageService.getMyReservationHistory(user.getId());
         model.addAttribute("historyList", historyList);
 
-        return "mypage";
+        return "mypage-history"; // templates/mypage-history.html 열기
     }
+
+    // 🌟 2. 진짜 마이페이지 (새로 만드는 개인정보 확인용 페이지)
+    @GetMapping("/mypage/profile")
+    public String myPageProfile(HttpSession session, Model model) {
+        String studentNumber = (String) session.getAttribute("userId");
+        if (studentNumber == null) return "redirect:/";
+
+        User user = userService.getUserInfo(studentNumber);
+        model.addAttribute("user", user);
+
+        return "mypage-profile"; // templates/mypage-profile.html 열기
+    }
+
+    // 🌟 학생 본인이 예약 취소
+    @PostMapping("/reservation/cancel")
+    public String cancelReservation(@RequestParam Integer reservationId, RedirectAttributes redirectAttributes) {
+        try {
+            // 서비스의 취소(삭제) 메서드 호출
+            myPageService.cancelReservation(reservationId);
+            // 💡 주의: 만약 이 컨트롤러가 MyPageController가 아니고 ReservationController라면,
+            // myPageService 부분을 위에서 주입받은 본인 서비스(reservationService 등)로 이름을 맞춰서 호출해야 해!
+
+            redirectAttributes.addFlashAttribute("message", "예약이 성공적으로 취소되었습니다.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "예약 취소 중 오류가 발생했습니다.");
+        }
+
+        return "redirect:/mypage/history"; // 취소 후 다시 예약 현황 페이지로 새로고침
+    }
+
 }
