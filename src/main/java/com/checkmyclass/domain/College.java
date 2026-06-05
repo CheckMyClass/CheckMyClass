@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
+// 단과대학 정보 Entity (college 테이블과 매핑)
 @Entity
 @Table(name = "college")
 @Getter
