@@ -114,8 +114,10 @@
         <hr class="line" style="width: 100%; border: 0; border-top: 1px solid #ddd; margin-bottom: 20px;" />
 
         <div th:if="${!#lists.isEmpty(historyList)}" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-            <article class="reservation" th:each="res : ${historyList}" th:aria-label="'예약 정보 - ' + ${res.reservationDate}" style="margin-bottom: 15px;">
-                <dl class="frame-2">
+            <article class="reservation" th:each="res : ${historyList}" th:aria-label="'예약 정보 - ' + ${res.reservationDate}"
+                     style="margin-bottom: 15px; display: flex; flex-wrap: wrap; align-items: center;">
+
+                <dl class="frame-2" style="margin: 0; flex: 1;">
                     <div class="frame-3">
                         <dt class="text-wrapper-4">예약일</dt>
                         <dd class="input">
@@ -143,22 +145,25 @@
                 </dl>
 
                 <div th:class="${res.status.name() == 'WAITING' ? 'status-waiting' : (res.status.name() == 'APPROVED' ? 'status-approved' : 'status-rejected')}"
-                     role="status" th:aria-label="'예약 상태: ' + ${res.status.name()}">
+                     role="status" th:aria-label="'예약 상태: ' + ${res.status.name()}" style="margin-left: 20px;">
                     <span class="text-wrapper-7"
                           th:text="${res.status.name() == 'WAITING' ? '대기' : (res.status.name() == 'APPROVED' ? '승인' : '반려')}">
                     </span>
                 </div>
 
                 <th:block th:if="${res.reservationDate.isAfter(T(java.time.LocalDate).now()) or (res.reservationDate.isEqual(T(java.time.LocalDate).now()) and res.startTime.isAfter(T(java.time.LocalTime).now()))}">
-                    <form th:action="@{/reservation/cancel}" method="POST" onsubmit="return confirm('정말 예약을 취소하시겠습니까? (취소 시 복구할 수 없습니다.)');" style="margin-top: 15px; text-align: right; width: 100%;">
-                        <input type="hidden" name="reservationId" th:value="${res.id}" />
-                        <button type="submit" style="padding: 8px 16px; background-color: #dc3545; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s;">
-                            🗑️ 예약 취소
-                        </button>
-                    </form>
+                    <div style="width: 100%; border-top: 1px dashed #ddd; margin-top: 15px; padding-top: 15px; display: flex; justify-content: flex-end;">
+                        <form th:action="@{/reservation/cancel}" method="POST" onsubmit="return confirm('정말 예약을 취소하시겠습니까? (취소 시 복구할 수 없습니다.)');" style="margin: 0;">
+                            <input type="hidden" name="reservationId" th:value="${res.id}" />
+                            <button type="submit" style="padding: 8px 16px; background-color: #dc3545; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s;">
+                                예약취소
+                            </button>
+                        </form>
+                    </div>
                 </th:block>
 
-            </article> </div>
+            </article>
+        </div>
     </main>
 
 </div> <script th:if="${message}" th:inline="javascript">

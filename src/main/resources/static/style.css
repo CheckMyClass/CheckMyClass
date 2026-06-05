@@ -1486,7 +1486,6 @@ body {
   display: flex;
   flex-direction: column;
   width: 402px;
-  height: 1300px;
   align-items: center;
   gap: 12px;
   position: relative;

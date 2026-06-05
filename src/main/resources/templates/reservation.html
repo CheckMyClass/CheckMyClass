@@ -73,25 +73,36 @@
         .modal-value { font-weight: normal; color: #555; }
         .confirm-btn { width: 100%; padding: 12px; background-color: var(--main, #0056b3); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 16px; }
 
-        /* 🌟 [수정] 확인 버튼을 예약하기 버튼(view-2)과 똑같이 맞춤! */
-        .time-confirm-btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 10px 20px; background-color: var(--main, #0056b3); color: white;
-            border: none; border-radius: 20px; /* 동글동글하게 */
-            font-weight: bold; cursor: pointer; white-space: nowrap;
-            transition: background-color 0.2s; font-size: 14px; height: 100%; /* 옆 상자들과 높이 맞춤 */
+        .reservation button.time-confirm-btn {
+            display: inline-flex !important;
+            align-items: center !important; justify-content: center !important;
+            padding: 0 24px !important;
+            height: 42px !important;
+            background-color: var(--main, #0056b3) !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 21px !important;
+            font-weight: bold !important;
+            cursor: pointer !important;
+            white-space: nowrap !important;
+            transition: all 0.2s ease-in-out; font-size: 15px !important;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
         }
-        .time-confirm-btn:hover { background-color: #004494; }
+        .reservation button.time-confirm-btn:hover {
+            background-color: #004494 !important;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+            transform: translateY(-1px);
+        }
 
-        /* 🌟 [수정] 강의실 카드 고정 (frame-7이 사진 양끝을 넘지 않도록 꽉 잡아줌) */
+        /* 🌟 강의실 카드 고정 */
         .frame-6 {
             width: 100% !important;
-            max-width: 380px !important; /* 사진 최대 가로 크기로 묶어버림 */
-            margin: 0 auto 20px auto !important; /* 가운데 정렬 */
+            max-width: 380px !important;
+            margin: 0 auto 20px auto !important;
             background-color: #fff;
             border-radius: 15px;
-            overflow: hidden; /* 삐져나가는 것 방지 */
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* 살짝 그림자 */
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             display: flex; flex-direction: column;
         }
         .frame-7 {
@@ -102,7 +113,7 @@
         }
         .frame-9 {
             width: 100% !important;
-            height: 200px !important; /* 사진 높이 고정 */
+            height: 200px !important;
             margin: 0 !important;
             overflow: hidden;
         }
@@ -171,7 +182,7 @@
                 </div>
             </section>
 
-            <div style="display: flex; align-items: stretch; gap: 10px; width: 100%; max-width: 400px; margin-bottom: 40px;">
+            <div style="display: flex; align-items: center; gap: 10px; width: 100%; max-width: 400px; margin-bottom: 40px;">
                 <section class="frame-4" style="flex: 1; margin-bottom: 0;">
                     <div class="frame-5"><span class="text-wrapper-4">시간</span></div>
                     <div class="frame-3">
@@ -223,7 +234,7 @@
                         <span th:if="${room.boardType == '전자칠판'}"> / 전자칠판</span>
                         <span th:if="${room.boardType == '빔프로젝터'}"> / 빔프로젝터</span>
                     </p>
-                    <button class="view-2 reservation-btn" type="button" style="border: none; cursor: pointer; border-radius: 20px; padding: 10px 20px; background-color: var(--main, #0056b3);">
+                    <button class="view-2 reservation-btn" type="button" style="border: none; cursor: pointer; border-radius: 20px; padding: 10px 20px; background-color: var(--main, #0056b3); box-shadow: 0 2px 5px rgba(0,0,0,0.15); transition: background-color 0.2s;">
                         <span class="text-wrapper" style="font-weight: bold; color: white;">예약하기</span>
                     </button>
                 </div>
