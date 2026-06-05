@@ -5,12 +5,14 @@ import com.checkmyclass.domain.ReservationStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import org.springframework.data.repository.query.Param; // 임포트 확인!
+import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
     // 1. 특정 유저(user_id)가 예약한 내역 싹 다 가져오기 (마이페이지용)
-    List<Reservation> findByUserId(Integer userId);
+    List<Reservation> findByUser_IdOrderByIdDesc(Integer userId);
 
     // 2. 특정 강의실의 특정 날짜에 잡힌 예약들 가져오기 (중복 예약 방지용)
     List<Reservation> findByClassroomIdAndReservationDate(Integer classroomId, LocalDate date);
@@ -32,4 +34,13 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
             "ORDER BY COUNT(r.id) DESC, AVG(UNIX_TIMESTAMP(r.reservation_date)) DESC",
             nativeQuery = true)
     List<Object[]> findClassroomReservationCounts();
+
+    @Query("SELECT CASE WHEN COUNT(r) > 0 THEN true ELSE false END FROM Reservation r " +
+            "WHERE r.classroom.id = :classroomId AND r.reservationDate = :date " +
+            "AND r.status != 'REJECTED' " +
+            "AND (r.startTime < :endTime AND r.endTime > :startTime)")
+    boolean existsOverlappingReservation(@Param("classroomId") Integer classroomId,
+                                         @Param("date") LocalDate date,
+                                         @Param("startTime") LocalTime startTime,
+                                         @Param("endTime") LocalTime endTime);
 }

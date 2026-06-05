@@ -3,13 +3,17 @@ package com.checkmyclass.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
+import lombok.Setter;
 
 @Entity
 @Table(name = "reservation")
 @Getter
+@Setter
 @NoArgsConstructor
 public class Reservation {
 
