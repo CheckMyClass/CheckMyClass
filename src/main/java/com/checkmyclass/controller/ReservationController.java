@@ -77,7 +77,7 @@ public class ReservationController {
             // 서비스에 예약 저장 심부름 시키기
             reservationService.makeReservation(studentNumber, class_id, date, start_time, end_time, purpose);
             redirectAttributes.addFlashAttribute("message", "예약 신청이 완료되었습니다.");
-            return "redirect:/mypage"; // 성공 시 마이페이지로 이동
+            return "redirect:/mypage/history"; // 성공 시 마이페이지로 이동
 
         } catch (IllegalArgumentException e) {
             // 에러 발생 시 알림창 띄우고 다시 원래 페이지로
@@ -85,4 +85,7 @@ public class ReservationController {
             return "redirect:/reservation?date=" + date + "&start_time=" + start_time + "&end_time=" + end_time;
         }
     }
+
+
+
 }

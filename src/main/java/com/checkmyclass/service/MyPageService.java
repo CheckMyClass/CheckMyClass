@@ -18,6 +18,11 @@ public class MyPageService {
 
     // 특정 유저의 예약 내역 목록을 가져오는 기능
     public List<Reservation> getMyReservationHistory(Integer userId) {
-        return reservationRepository.findByUserId(userId);
+        return reservationRepository.findByUser_IdOrderByCreateTimeAsc(userId);
+    }
+
+    @org.springframework.transaction.annotation.Transactional
+    public void cancelReservation(Integer reservationId) {
+        reservationRepository.deleteById(reservationId);
     }
 }

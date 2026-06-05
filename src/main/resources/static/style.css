@@ -941,10 +941,8 @@ body {
   display: flex;
   flex-direction: column;
   width: 402px;
-  /* height: 874px; */
   align-items: center;
   gap: 12px;
-  padding: 66px 0px 0px;
   position: relative;
   background-color: var(--background);
 }
@@ -1296,7 +1294,6 @@ body {
   height: 874px;
   align-items: center;
   gap: 12px;
-  padding: 66px 0px 0px;
   position: relative;
   background-color: var(--background);
 }
@@ -1492,7 +1489,6 @@ body {
   height: 1300px;
   align-items: center;
   gap: 12px;
-  padding: 66px 0px 0px;
   position: relative;
   background-color: var(--background);
 }
@@ -1850,7 +1846,7 @@ body {
   /* 높이 자동 조절 및 여백 */
   height: auto;
   min-height: 100vh;
-  padding: 66px 0px 50px 0px;
+  padding: 0px 0px 50px 0px;
 
   align-items: center;
   gap: 16px;
@@ -2045,7 +2041,7 @@ body {
   width: 402px;
   align-items: center;
   gap: 15px;
-  padding: 66px 0px 100px; 
+  padding: 0px 0px 100px;
   background-color: var(--background);
 }
 
