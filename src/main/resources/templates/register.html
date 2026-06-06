@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko">
+<!-- 회원가입 페이지 -->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
@@ -22,6 +23,7 @@
         회원가입을 위한 정보를 입력해주세요<br />비밀번호는 암호화되어 보관됩니다
       </p>
 
+      <!-- 회원가입 폼 -->
       <form class="info" method="post" action="/register">
         <label class="div" for="name">이름</label>
         <div class="input">
@@ -33,6 +35,7 @@
           <div class="frame-wrapper">
             <input class="frame-2" type="text" id="student-id" name="studentNumber" required aria-required="true" autocomplete="off" />
           </div>
+          <!-- 교직원 체크 시 role=PROFESSOR 전달 -->
           <div class="frame-4">
             <label class="text-wrapper-2" for="is-staff">교직원</label>
             <div class="check-box-outline">
@@ -73,6 +76,7 @@
   </main>
 </div>
 
+<!-- 회원가입 실패 시 에러 메시지 표시 -->
 <script th:if="${errorMessage != null}">
   alert('[[${errorMessage}]]');
 </script>

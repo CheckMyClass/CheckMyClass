@@ -13,10 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// 강의실 검색 / 예약 생성 서비스
 @Service
 @RequiredArgsConstructor
 public class ReservationService {
@@ -25,13 +25,13 @@ public class ReservationService {
     private final ClassroomRepository classroomRepository;
     private final UserRepository userRepository;
 
-    // 1. 강의실 필터링 검색
+    // 조건(필터)에 맞는 강의실 검색
     public List<Classroom> searchClassrooms(List<String> filters) {
         List<Classroom> allRooms = classroomRepository.findAll();
 
         if (filters == null || filters.isEmpty()) return allRooms;
 
-        // 필터 조건에 맞는 강의실만 걸러내기
+        // PC(실습) / 빔프로젝터 / 전자칠판 필터 적용
         return allRooms.stream().filter(room -> {
             if (filters.contains("pc") && (room.getIsPractical() == null || !room.getIsPractical())) return false;
             if (filters.contains("projector") && !"빔프로젝터".equals(room.getBoardType())) return false;
@@ -40,7 +40,7 @@ public class ReservationService {
         }).collect(Collectors.toList());
     }
 
-    // 2. 예약 확정 및 저장
+    // 예약 생성 및 저장
     @Transactional
     public void makeReservation(String studentNumber, Integer classId, LocalDate date, LocalTime startTime, LocalTime endTime, String purpose) {
         // 시간 유효성 검사
@@ -48,7 +48,7 @@ public class ReservationService {
             throw new IllegalArgumentException("종료 시간은 시작 시간보다 늦어야 합니다.");
         }
 
-        // 중복 예약 체크
+        // 중복 예약 검사
         if (reservationRepository.existsOverlappingReservation(classId, date, startTime, endTime)) {
             throw new IllegalArgumentException("해당 시간에는 이미 다른 예약이 존재합니다.");
         }
@@ -58,10 +58,8 @@ public class ReservationService {
         Classroom classroom = classroomRepository.findById(classId)
                 .orElseThrow(() -> new IllegalArgumentException("강의실 정보를 찾을 수 없습니다."));
 
-        // 예약 생성
+        // 예약 정보 생성 (초기 상태: 대기)
         Reservation res = new Reservation();
-        // ★ 주의: Reservation 엔티티에 setUser, setClassroom 등의 setter 메서드가 있어야 해!
-        // 만약 없다면 빌더 패턴이나 생성자를 사용해야 해.
         res.setUser(user);
         res.setClassroom(classroom);
         res.setReservationDate(date);
@@ -69,7 +67,6 @@ public class ReservationService {
         res.setEndTime(endTime);
         res.setPurpose(purpose);
         res.updateStatus(ReservationStatus.WAITING);
-        // res.setCreateTime(LocalDateTime.now()); (엔티티 설정에 따라 필요시 추가)
 
         reservationRepository.save(res);
     }

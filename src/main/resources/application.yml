@@ -1,5 +1,7 @@
+# 스프링 부트 환경설정 (DB 연결 / JPA 설정)
 spring:
   datasource:
+    # MariaDB 연결 정보 (team002 DB, 한글·시간대 설정 포함)
     url: jdbc:mariadb://127.0.0.1:3306/team002?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
     password:
@@ -7,9 +9,9 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: none
-    show-sql: true
+      ddl-auto: none      # 기존 테이블 그대로 사용 (자동 생성/변경 안 함)
+    show-sql: true        # 실행되는 SQL 콘솔 출력
 
     properties:
       hibernate:
-        format_sql: true
+        format_sql: true  # SQL 보기 좋게 정렬해서 출력

@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+// 건물 정보 Entity (building 테이블과 매핑)
 @Entity
 @Table(name = "building")
 @Getter
@@ -29,7 +30,7 @@ public class Building {
     @Column(name = "delete_time")
     private LocalDateTime deleteTime;
 
-    // (선택) 양방향 매핑: 이 건물에 속한 강의실 목록을 불러오고 싶을 때
+    // 이 건물에 속한 강의실 목록 (일대다 관계)
     @OneToMany(mappedBy = "building")
     private List<Classroom> classrooms = new ArrayList<>();
 }
