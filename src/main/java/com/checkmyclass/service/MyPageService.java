@@ -6,8 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
+// 마이페이지 서비스 (예약 내역 조회 / 취소)
 @Service
-@Transactional(readOnly = true) // 데이터 조회만 하니까 성능을 위해 읽기 전용 모드 켜기!
+@Transactional(readOnly = true) // 조회 위주이므로 읽기 전용 기본 설정
 public class MyPageService {
 
     private final ReservationRepository reservationRepository;
@@ -16,12 +17,13 @@ public class MyPageService {
         this.reservationRepository = reservationRepository;
     }
 
-    // 특정 유저의 예약 내역 목록을 가져오는 기능
+    // 특정 회원의 예약 내역 조회
     public List<Reservation> getMyReservationHistory(Integer userId) {
         return reservationRepository.findByUser_IdOrderByIdDesc(userId);
     }
 
-    @org.springframework.transaction.annotation.Transactional
+    // 예약 취소 (삭제) - 쓰기 작업이므로 읽기 전용 해제
+    @Transactional
     public void cancelReservation(Integer reservationId) {
         reservationRepository.deleteById(reservationId);
     }

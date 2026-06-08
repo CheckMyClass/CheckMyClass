@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+<!-- 로그인 페이지 -->
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
   <title>CheckMyClass - 로그인</title>
-  <link rel="stylesheet" href="/globals.css" />
+  <link rel="stylesheet" href="/global.css" />
   <link rel="stylesheet" href="/styleguide.css" />
   <link rel="stylesheet" href="/style.css" />
 </head>
@@ -20,6 +21,7 @@
     </div>
   </div>
   <div class="login">
+    <!-- 로그인 폼 (학번 + 비밀번호) -->
     <form action="/login" method="POST">
       <div class="info">
         <div class="text-wrapper">학번</div>
@@ -49,6 +51,7 @@
   </div>
 </div>
 
+<!-- 서버에서 전달된 안내/에러 메시지를 알림창으로 표시 -->
 <script th:if="${message != null}">
   alert('[[${message}]]');
 </script>

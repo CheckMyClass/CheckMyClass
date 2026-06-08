@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+// 회원가입 입력값을 담는 DTO (유효성 검사 포함)
 @Getter
 @Setter
 public class UserRegisterDto {
@@ -27,5 +28,6 @@ public class UserRegisterDto {
     @NotBlank(message = "학과를 선택해주세요.")
     private String majorName;
 
+    // 교직원 체크 시 "PROFESSOR" 전달, 미체크 시 null
     private String role;
 }

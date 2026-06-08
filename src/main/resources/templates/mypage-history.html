@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- 마이페이지 - 내 예약 현황 페이지 (예약 취소 가능) -->
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,9 +10,7 @@
     <link rel="stylesheet" href="/style.css" />
 
     <style>
-        /* =========================================
-           🌟 1. 공통 사이드바 & 모바일 반응형
-           ========================================= */
+        /* 공통 사이드바 */
         .sidebar { position: fixed; top: 0; left: 0; width: 240px; height: 100vh; background-color: #ffffff; box-shadow: 2px 0 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; padding-top: 30px; z-index: 9999; }
         .sidebar-logo { text-align: center; margin-bottom: 30px; }
         .sidebar-logo img { width: 140px; cursor: pointer; }
@@ -20,19 +19,16 @@
         .sidebar-menu a { display: block; padding: 15px 30px; color: #555; text-decoration: none; font-size: 16px; font-weight: bold; transition: all 0.3s ease; border-radius: 0 30px 30px 0; margin-right: 20px; }
         .sidebar-menu a:hover, .sidebar-menu a.active { background-color: var(--main, #0056b3); color: #ffffff; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); }
 
-        /* =========================================
-           🌟 2. 본문 영역 & 피그마 충돌 완벽 방어
-           ========================================= */
+        /* 본문 영역 (피그마 고정 크기·배경 무력화) */
         .content-area {
             margin-left: 240px;
             width: calc(100% - 240px);
             padding: 30px 40px;
             min-height: 100vh;
-            background-color: #ffffff; /* 🌟 배경 완벽한 흰색으로 통일! */
+            background-color: #ffffff;
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* 피그마의 좁은 고정 크기와 강제 흰색 배경 무력화 */
         .mypage {
             width: 100% !important;
             max-width: 800px !important;
@@ -40,16 +36,12 @@
             display: flex !important; flex-direction: column !important; align-items: center !important;
         }
 
-        /* 각 섹션들이 세로로 찌그러지지 않게 넓게 펴줌 */
-        .mypage > section, .mypage > div { width: 100%; max-width: 800px; }
+        .mypage > section, .mypage > div { width: 100%; max-width: 360px; }
 
-        /* 🌟 상단 로고 간격 줄임 반영! (30px -> 10px) */
         .top-logo-container { width: 100%; text-align: center; margin-bottom: 10px; display: flex; justify-content: center; }
         .top-logo { height: 35px; object-fit: contain; }
 
-        /* =========================================
-           📱 3. 모바일 반응형
-           ========================================= */
+        /* 모바일 반응형 */
         .hamburger-btn { display: none; position: fixed; top: 15px; left: 15px; z-index: 10000; background-color: var(--main, #0056b3); color: white; border: none; padding: 10px 15px; font-size: 18px; border-radius: 8px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 9998; }
 
@@ -64,7 +56,7 @@
             }
             .sidebar-overlay.active { display: block; }
             .top-logo { height: 28px; }
-            .top-logo-container { margin-bottom: 5px; } /* 모바일 로고 간격도 축소 */
+            .top-logo-container { margin-bottom: 5px; }
         }
     </style>
 </head>
@@ -74,6 +66,7 @@
 <button id="hamburgerBtn" class="hamburger-btn">☰ 메뉴</button>
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
+<!-- 왼쪽 네비게이션 메뉴 -->
 <nav class="sidebar">
     <div class="sidebar-logo">
         <a th:href="@{/main}"><img src="/Logo_img.png" alt="CheckMyClass 로고" /></a>
@@ -81,7 +74,8 @@
     <ul class="sidebar-menu">
         <li><a th:href="@{/main}">🏠 메인 홈</a></li>
         <li><a th:href="@{/reservation}">📅 예약 신청</a></li>
-        <li><a th:href="@{/mypage/history}" class="active">📋 예약 현황</a></li> <li><a th:href="@{/mypage/profile}">👤 마이페이지</a></li>
+        <li><a th:href="@{/mypage/history}" class="active">📋 예약 현황</a></li>
+        <li><a th:href="@{/mypage/profile}">👤 마이페이지</a></li>
     </ul>
 </nav>
 
@@ -93,6 +87,7 @@
 
     <main class="mypage">
 
+        <!-- 프로필 요약 (학과 / 이름 / 회원등급) -->
         <section class="profile">
             <div class="div">
                 <div class="view" role="img" aria-label="프로필 이미지">
@@ -109,10 +104,11 @@
         </section>
 
         <section class="view-2">
-            <h1 class="text-wrapper-3" style="margin: 10px 0; font-size: 24px;">예약 내역</h1>
+            <h1 class="text-wrapper-3" style="margin: 10px 0; font-size: 20px;">예약 내역</h1>
         </section>
         <hr class="line" style="width: 100%; border: 0; border-top: 1px solid #ddd; margin-bottom: 20px;" />
 
+        <!-- 예약 내역 카드 목록 -->
         <div th:if="${!#lists.isEmpty(historyList)}" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
             <article class="reservation" th:each="res : ${historyList}" th:aria-label="'예약 정보 - ' + ${res.reservationDate}"
                      style="margin-bottom: 15px; display: flex; flex-wrap: wrap; align-items: center;">
@@ -144,6 +140,7 @@
                     </div>
                 </dl>
 
+                <!-- 예약 상태 뱃지 -->
                 <div th:class="${res.status.name() == 'WAITING' ? 'status-waiting' : (res.status.name() == 'APPROVED' ? 'status-approved' : 'status-rejected')}"
                      role="status" th:aria-label="'예약 상태: ' + ${res.status.name()}" style="margin-left: 20px;">
                     <span class="text-wrapper-7"
@@ -151,6 +148,7 @@
                     </span>
                 </div>
 
+                <!-- 아직 시작 전인 예약만 취소 버튼 노출 -->
                 <th:block th:if="${res.reservationDate.isAfter(T(java.time.LocalDate).now()) or (res.reservationDate.isEqual(T(java.time.LocalDate).now()) and res.startTime.isAfter(T(java.time.LocalTime).now()))}">
                     <div style="width: 100%; border-top: 1px dashed #ddd; margin-top: 15px; padding-top: 15px; display: flex; justify-content: flex-end;">
                         <form th:action="@{/reservation/cancel}" method="POST" onsubmit="return confirm('정말 예약을 취소하시겠습니까? (취소 시 복구할 수 없습니다.)');" style="margin: 0;">
@@ -166,13 +164,16 @@
         </div>
     </main>
 
-</div> <script th:if="${message}" th:inline="javascript">
+</div>
+
+<!-- 서버 안내 메시지 표시 -->
+<script th:if="${message}" th:inline="javascript">
     alert([[${message}]]);
 </script>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // 🌟 모바일 햄버거 메뉴 토글 로직 추가
+        // 모바일 햄버거 메뉴 토글
         const hamburgerBtn = document.getElementById("hamburgerBtn");
         const sidebar = document.querySelector(".sidebar");
         const overlay = document.getElementById("sidebarOverlay");

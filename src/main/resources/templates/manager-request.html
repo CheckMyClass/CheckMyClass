@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+<!-- 관리자 - 승인 대기 목록 페이지 (승인/반려 처리) -->
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>CheckMyClass - 예약 요청 내역</title>
-    <link rel="stylesheet" href="/globals.css" />
+    <link rel="stylesheet" href="/global.css" />
     <link rel="stylesheet" href="/styleguide.css" />
     <link rel="stylesheet" href="/style.css" />
     <style>
-        /* 🌟 공통 패널 CSS */
+        /* 공통 사이드바 */
         .sidebar { position: fixed; top: 0; left: 0; width: 240px; height: 100vh; background-color: #ffffff; box-shadow: 2px 0 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; padding-top: 30px; z-index: 9999; }
         .sidebar-logo { text-align: center; margin-bottom: 30px; }
         .sidebar-logo img { width: 140px; cursor: pointer; }
@@ -30,7 +31,7 @@
             .sidebar-overlay.active { display: block; }
         }
 
-        /* 🌟 기존 디자인 유지용 CSS */
+        /* 예약 요청 카드 & 승인/반려 버튼 */
         .manager { width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; }
         .reservation { width: 100%; background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .btn-container { display: flex; gap: 10px; margin-top: 15px; justify-content: flex-end; }
@@ -53,6 +54,7 @@
 <button id="hamburgerBtn" class="hamburger-btn">☰ 메뉴</button>
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
+<!-- 관리자 전용 네비게이션 메뉴 -->
 <nav class="sidebar">
     <div class="sidebar-logo">
         <img src="/Logo_img.png" alt="CheckMyClass 로고" />
@@ -75,10 +77,12 @@
 
         <div th:if="${message}" class="flash-message" th:text="${message}"></div>
 
+        <!-- 대기 중인 예약이 없을 때 -->
         <div th:if="${#lists.isEmpty(waitingList)}" style="padding: 40px; text-align: center; color: #888;">
             현재 승인 대기 중인 예약 요청이 없습니다.
         </div>
 
+        <!-- 승인 대기 예약 카드 목록 -->
         <div th:each="r : ${waitingList}" class="reservation">
             <div class="info-container">
                 <div class="user-info">
@@ -106,6 +110,7 @@
                 </div>
             </div>
 
+            <!-- 승인 / 반려 버튼 (각각 별도 폼으로 전송) -->
             <div class="btn-container">
                 <form action="/manager/approve" method="POST" class="action-form" onsubmit="return confirm('승인하시겠습니까?');">
                     <input type="hidden" name="reservationId" th:value="${r.id}" />
@@ -123,6 +128,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+        // 모바일 햄버거 메뉴 토글
         const hamburgerBtn = document.getElementById("hamburgerBtn");
         const sidebar = document.querySelector(".sidebar");
         const overlay = document.getElementById("sidebarOverlay");

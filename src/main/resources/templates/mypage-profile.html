@@ -1,15 +1,16 @@
 <!DOCTYPE html>
+<!-- 마이페이지 - 개인정보 확인 페이지 -->
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>CheckMyClass - 마이페이지</title>
-    <link rel="stylesheet" href="/globals.css" />
+    <link rel="stylesheet" href="/global.css" />
     <link rel="stylesheet" href="/styleguide.css" />
     <link rel="stylesheet" href="/style.css" />
 
     <style>
-        /* 패널 & 본문 기본 레이아웃 */
+        /* 공통 사이드바 & 본문 */
         .sidebar {
             position: fixed; top: 0; left: 0; width: 240px; height: 100vh;
             background-color: #ffffff; box-shadow: 2px 0 10px rgba(0,0,0,0.05);
@@ -31,7 +32,7 @@
         .top-logo-container { width: 100%; text-align: center; margin-bottom: 30px; display: flex; justify-content: center; }
         .top-logo { height: 35px; object-fit: contain; }
 
-        /* 👤 개인정보 카드 패널 스타일 */
+        /* 개인정보 카드 */
         .profile-card {
             width: 90%; max-width: 500px; background: white; border-radius: 20px;
             padding: 35px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center;
@@ -49,9 +50,16 @@
             color: white; border-radius: 15px; font-size: 13px; font-weight: bold; margin-bottom: 30px;
         }
 
-        .info-table { width: 100%; text-align: left; border-spacing: 0 15px; }
-        .info-label { font-size: 15px; color: #888; font-weight: bold; width: 30%; }
-        .info-value { font-size: 16px; color: #333; font-weight: 500; }
+        .info-table { width: 100%; text-align: left; border-spacing: 0 15px; table-layout: auto; }
+        .info-label {
+            font-size: 15px; color: #888; font-weight: bold;
+            width: 110px; padding-right: 24px; white-space: nowrap;
+        }
+        .info-value {
+            font-size: 16px; color: #333; font-weight: 500;
+            white-space: nowrap; word-break: keep-all;
+            padding: 8px;
+        }
 
         /* 모바일 반응형 */
         .hamburger-btn {
@@ -74,6 +82,7 @@
 <button id="hamburgerBtn" class="hamburger-btn">☰ 메뉴</button>
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
+<!-- 왼쪽 네비게이션 메뉴 -->
 <nav class="sidebar">
     <div class="sidebar-logo">
         <a th:href="@{/main}"><img src="/Logo_img.png" alt="CheckMyClass 로고" /></a>
@@ -82,7 +91,8 @@
         <li><a th:href="@{/main}">🏠 메인 홈</a></li>
         <li><a th:href="@{/reservation}">📅 예약 신청</a></li>
         <li><a th:href="@{/mypage/history}">📋 예약 현황</a></li>
-        <li><a th:href="@{/mypage/profile}" class="active">👤 마이페이지</a></li> </ul>
+        <li><a th:href="@{/mypage/profile}" class="active">👤 마이페이지</a></li>
+    </ul>
 </nav>
 
 <div class="content-area">
@@ -90,6 +100,7 @@
         <img src="/Logo_eng.png" alt="Check My Class" class="top-logo" />
     </div>
 
+    <!-- 회원 개인정보 카드 (이름 / 등급 / 학번 / 학과) -->
     <div class="profile-card">
         <div class="profile-avatar">
             <img src="/Logo_dongeui.png" alt="학교 로고" />
@@ -112,6 +123,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+        // 모바일 햄버거 메뉴 토글
         const hamburgerBtn = document.getElementById("hamburgerBtn");
         const sidebar = document.querySelector(".sidebar");
         const overlay = document.getElementById("sidebarOverlay");
