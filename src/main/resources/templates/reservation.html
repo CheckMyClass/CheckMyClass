@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>CheckMyClass - 예약 신청</title>
-    <link rel="stylesheet" href="/globals.css" />
+    <link rel="stylesheet" href="/global.css" />
     <link rel="stylesheet" href="/styleguide.css" />
     <link rel="stylesheet" href="/style.css" />
 
@@ -34,6 +34,7 @@
             max-width: 800px !important;
             background-color: transparent !important;
             display: flex !important; flex-direction: column !important; align-items: center !important;
+            padding-bottom: 100px;
         }
 
         .top-logo-container { width: 100%; text-align: center; margin-bottom: 10px; display: flex; justify-content: center; }
@@ -144,7 +145,7 @@
     <main class="reservation">
 
         <!-- 검색 폼 (장비 필터 + 날짜/시간 선택) -->
-        <form id="searchForm" th:action="@{/reservation}" method="GET" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <form id="searchForm" th:action="@{/reservation}" method="GET" style="width: 100%; display: flex; flex-direction: column; align-items: center; height: 190px;">
 
             <section class="view" aria-label="페이지 제목" style="margin-bottom: 20px;">
                 <h1 class="text-wrapper" style="font-size: 24px;">예약 신청</h1>

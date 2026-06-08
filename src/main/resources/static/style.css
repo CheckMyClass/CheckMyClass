@@ -1,9 +1,9 @@
 /* =========================================================
    style.css
-   피그마(Figma)에서 자동 생성된 화면 스타일시트.
-   각 페이지의 레이아웃·카드·버튼 등 세부 디자인을 정의한다.
-   클래스명(.frame-x, .text-wrapper-x 등)은 피그마가 자동 부여한 이름이며,
-   화면별 추가 스타일은 각 HTML 파일의 <style> 안에 따로 정의되어 있다.
+   ?�그�?Figma)?�서 ?�동 ?�성???�면 ?��??�시??
+   �??�이지???�이?�웃·카드·버튼 ???��? ?�자?�을 ?�의?�다.
+   ?�래?�명(.frame-x, .text-wrapper-x ???� ?�그마�? ?�동 부?�한 ?�름?�며,
+   ?�면�?추�? ?��??��? �?HTML ?�일??<style> ?�에 ?�로 ?�의?�어 ?�다.
    ========================================================= */
 
 .main {
@@ -71,9 +71,9 @@
         background-color: #e0e0e0;
     }
 
-/*[통합 헤더 스타일] 모든 페이지 공통 적용*/
+/*[?�합 ?�더 ?��??? 모든 ?�이지 공통 ?�용*/
 
-/* 1. 헤더 전체 박스 */
+/* 1. ?�더 ?�체 박스 */
 .header {
   display: flex;
   align-items: center;    
@@ -175,7 +175,6 @@
   width: 44px;
   height: 44px;
   aspect-ratio: 1;
-  background-image: url(./img/1.png);
   background-size: cover;
   background-position: 50% 50%;
 }
@@ -260,7 +259,7 @@
 }
 
 .main .text-wrapper-3 {
-  font-family: "Pretendard Variable-Medium";
+  font-family: var(--main-font-font-family);
   font-weight: 500;
   color: var(--black);
   position: relative;
@@ -467,7 +466,7 @@ body {
   margin-top: -1px;
   position: relative;
   width: fit-content;
-  font-family: "Pretendard Variable-Medium";
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: #333333;
   font-size: 14px;
@@ -500,7 +499,7 @@ body {
 .log-in .div {
   position: relative;
   width: fit-content;
-  font-family: "Pretendard Variable-Medium";
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: #333333;
   font-size: 14px;
@@ -541,7 +540,7 @@ body {
   position: relative;
   width: fit-content;
   margin-top: -1px;
-  font-family: "Pretendard Variable-Medium";
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: var(--white);
   font-size: 14px;
@@ -569,7 +568,7 @@ body {
 .text-link .text-wrapper {
   position: relative;
   width: fit-content;
-  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 400;
   color: var(--main);
   font-size: 12px;
@@ -639,7 +638,7 @@ body {
 
 .register .text-wrapper {
   margin-top: -1px;
-  font-family: "Pretendard Variable-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   text-align: center;
   position: relative;
   width: fit-content;
@@ -663,7 +662,7 @@ body {
 
 .register .div {
   margin-top: -1px;
-  font-family: "Inter-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   position: relative;
   width: fit-content;
   font-weight: 700;
@@ -695,7 +694,7 @@ body {
 }
 
 .register .text-wrapper-2 {
-  font-family: "Inter-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   position: relative;
   width: fit-content;
   font-weight: 700;
@@ -770,7 +769,7 @@ body {
   position: relative;
   width: fit-content;
   margin-top: -1px;
-  font-family: "Inter-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: var(--x-0);
   font-size: 14px;
@@ -784,7 +783,7 @@ body {
   height: 37px;
   border: none;
   background: transparent;
-  font-family: "Inter-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: #333333;
   font-size: 14px;
@@ -859,9 +858,9 @@ body {
   position: relative;
   width: fit-content;
   margin-top: -1px;
-  font-family: "Inter-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 700;
-  color: var(—x-0);
+  color: var(--x-0);
   font-size: 14px;
   letter-spacing: 0;
   line-height: normal;
@@ -906,7 +905,7 @@ body {
   user-select: none;
 }
 
-/* 체크박스 외곽선 */
+/* 체크박스 ?�곽??*/
 .register .check-box-outline {
   position: relative;
   width: 24px;
@@ -1025,7 +1024,7 @@ body {
   width: fit-content;
   margin-top: -8px;
   margin-bottom: -6px;
-  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 500;
   color: var(--background);
   font-size: 15px;
@@ -1053,7 +1052,7 @@ body {
 .reservation .text-wrapper-3 {
   margin-top: -8px;
   margin-bottom: -6px;
-  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 500;
   color: var(--main);
   position: relative;
@@ -1137,7 +1136,7 @@ body {
   position: relative;
   width: fit-content;
   margin-top: -1px;
-  font-family: "Pretendard-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: var(--main);
   font-size: 20px;
@@ -1293,7 +1292,7 @@ body {
   display: block;
 }
 
-/* 이후 수정해야 함*/
+/* ?�후 ?�정?�야 ??/
 
 .manager {
   display: flex;
@@ -1358,7 +1357,7 @@ body {
   font-size: 22px;
   position: relative;
   width: fit-content;
-  font-family: "Pretendard-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: var(--black);
   letter-spacing: 0;
@@ -1380,7 +1379,7 @@ body {
 
 .manager .element {
   margin-top: -1px;
-  font-family: "Pretendard-Medium", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 500;
   color: var(--black);
   font-size: 16px;
@@ -1400,7 +1399,7 @@ body {
 }
 
 .manager .text-wrapper-2 {
-  font-family: "Pretendard-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: var(--black);
   font-size: 18px;
@@ -1413,7 +1412,7 @@ body {
 
 .manager .text-wrapper-3 {
   margin-top: -1px;
-  font-family: "Pretendard-Medium", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 500;
   color: var(--black);
   font-size: 18px;
@@ -1570,7 +1569,7 @@ body {
   width: fit-content;
   margin-top: -8px;
   margin-bottom: -6px;
-  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 500;
   color: var(--background);
   font-size: 15px;
@@ -1598,7 +1597,7 @@ body {
 .reservation .text-wrapper-3 {
   margin-top: -8px;
   margin-bottom: -6px;
-  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 500;
   color: var(--main);
   position: relative;
@@ -1683,7 +1682,7 @@ body {
   position: relative;
   width: fit-content;
   margin-top: -1px;
-  font-family: "Pretendard-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: var(--main);
   font-size: 20px;
@@ -1842,7 +1841,7 @@ body {
 }
 
 /* =========================================
-   Mypage (마이페이지) 전용 스타일
+   Mypage (마이?�이지) ?�용 ?��???
    ========================================= */
 
 .mypage {
@@ -1850,7 +1849,7 @@ body {
   flex-direction: column;
   width: 402px;
 
-  /* 높이 자동 조절 및 여백 */
+  /* ?�이 ?�동 조절 �??�백 */
   height: auto;
   min-height: 100vh;
   padding: 0px 0px 50px 0px;
@@ -1861,7 +1860,7 @@ body {
   background-color: var(--background);
 }
 
-/* 프로필 섹션 */
+/* ?�로???�션 */
 .mypage .profile {
   display: flex;
   align-items: center;
@@ -1885,7 +1884,7 @@ body {
   line-height: 1.4;
 }
 
-/* 학생회원 뱃지 */
+/* ?�생?�원 뱃�? */
 .mypage .div-wrapper {
   padding: 4px 10px;
   background-color: var(--main);
@@ -1959,7 +1958,7 @@ body {
   margin: 0;
 }
 
-/* 각 행 (라벨 + 값) */
+/* �???(?�벨 + �? */
 .mypage .frame-3 {
   display: flex;
   justify-content: space-between;
@@ -1969,7 +1968,7 @@ body {
   margin: 0;
 }
 
-/* 라벨 (왼쪽 정렬) */
+/* ?�벨 (?�쪽 ?�렬) */
 .mypage .text-wrapper-4 {
   font-family: var(--main-font-font-family);
   font-weight: 800;
@@ -1978,7 +1977,7 @@ body {
   text-align: left;
 }
 
-/* 값 (오른쪽 정렬) */
+/* �?(?�른�??�렬) */
 .mypage .text-wrapper-5 {
   font-family: var(--main-font-font-family);
   font-weight: 500;
@@ -1988,7 +1987,7 @@ body {
   flex: 1;
 }
 
-/* 대여 목적 박스 */
+/* ?�??목적 박스 */
 .mypage .purpose-box {
   border: 1px solid #ddd;
   background-color: var(--light-gray);
@@ -1999,7 +1998,7 @@ body {
   margin-left: auto;
 }
 
-/* 상태별 색상 클래스 */
+/* ?�태�??�상 ?�래??*/
 .status-waiting {
   border-color: var(--main);
   color: var(--main);
@@ -2038,7 +2037,7 @@ body {
 }
 
 /* =========================================
-   Manager (관리자 페이지) 스타일 업데이트
+   Manager (관리자 ?�이지) ?��????�데?�트
    ========================================= */
 
 .manager {
@@ -2068,7 +2067,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* 왼쪽 정보 컨테이너 */
+/* ?�쪽 ?�보 컨테?�너 */
 .manager .info-container {
   display: flex;
   flex-direction: column;
@@ -2076,7 +2075,7 @@ body {
   width: 75%;
 }
 
-/* 각 행 (Row) - 테두리 없음 */
+/* �???(Row) - ?�두�??�음 */
 .manager .info-row {
   display: flex;
   justify-content: space-between;
@@ -2084,9 +2083,9 @@ body {
   width: 100%;
 }
 
-/* 라벨 (왼쪽 정렬) */
+/* ?�벨 (?�쪽 ?�렬) */
 .manager .label {
-  font-family: "Pretendard", sans-serif;
+  font-family: var(--main-font-font-family);
   font-weight: 800;
   color: var(--black);
   font-size: 15px;
@@ -2095,9 +2094,9 @@ body {
   text-align: left;
 }
 
-/* 값 (오른쪽 정렬) */
+/* �?(?�른�??�렬) */
 .manager .value {
-  font-family: "Pretendard", sans-serif;
+  font-family: var(--main-font-font-family);
   font-weight: 500;
   color: #333;
   font-size: 15px;
@@ -2115,9 +2114,9 @@ body {
   margin-bottom: 0px;
 }
 
-/* 예약자 라벨 (17px) */
+/* ?�약???�벨 (17px) */
 .manager .user-label {
-  font-family: "Pretendard", sans-serif;
+  font-family: var(--main-font-font-family);
   font-weight: 800;
   color: var(--black);
   font-size: 20px;
@@ -2125,9 +2124,9 @@ body {
   margin-bottom: 5px;
 }
 
-/* 예약자 정보 값 (15px, 들여쓰기) */
+/* ?�약???�보 �?(15px, ?�여?�기) */
 .manager .user-value {
-  font-family: "Pretendard", sans-serif;
+  font-family: var(--main-font-font-family);
   font-weight: 500;
   color: #333;
   font-size: 15px;
@@ -2136,7 +2135,7 @@ body {
   padding-left: 10px;
 }
 
-/* 대여 목적 박스 (마이페이지와 동일) */
+/* ?�??목적 박스 (마이?�이지?� ?�일) */
 .manager .purpose-box {
   border: 1px solid #ddd;
   background-color: var(--light-gray);
@@ -2147,7 +2146,7 @@ body {
   margin-left: auto;
 }
 
-/* --- 승인 버튼 (오른쪽 배치) --- */
+/* --- ?�인 버튼 (?�른�?배치) --- */
 .manager .approve-btn {
   background: none;
   border: none;
@@ -2197,13 +2196,13 @@ background: none;
 }
 
 .manager .btn-text {
-  font-family: "Pretendard Variable-Midium";
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: white;
   font-size: 14px;
 }
 
-/* 그래프 영역 */
+/* 그래???�역 */
 .manager .graph-box {
   display: flex;
   align-items: center;
@@ -2217,7 +2216,7 @@ background: none;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 .manager .graph-text {
-  font-family: "Pretendard Variable-Midium";
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: #888;
   font-size: 16px;
