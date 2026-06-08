@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+// 관리자 예약 관리 서비스 (승인 / 반려 / 통계)
 @Service
 @RequiredArgsConstructor
 public class ManagerService {
@@ -20,7 +21,7 @@ public class ManagerService {
         return reservationRepository.findByStatusOrderByCreateTimeAsc(ReservationStatus.WAITING);
     }
 
-    // 전체 예약 현황 (최신순)
+    // 전체 예약 현황 조회 (최신순)
     public List<Reservation> getAllReservations() {
         return reservationRepository.findTop50ByOrderByDateDesc();
     }
@@ -46,16 +47,12 @@ public class ManagerService {
         reservation.updateStatus(ReservationStatus.REJECTED);
     }
 
-    // 🌟 콤보박스에서 넘겨받은 상태로 예약을 마음대로 변경하는 메서드
+    // 콤보박스에서 선택한 상태로 예약 상태 변경
+    // (@Transactional 변경 감지로 save 없이 자동 반영)
     @Transactional
     public void changeStatus(Integer reservationId, ReservationStatus newStatus) {
-        // 1. DB에서 해당 예약 번호(ID)를 가진 예약을 찾아온다.
         Reservation reservation = reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 예약입니다."));
-
-        // 2. 예약의 상태를 콤보박스에서 선택한 새로운 상태(newStatus)로 바꾼다.
         reservation.updateStatus(newStatus);
-
-        // (💡 @Transactional이 붙어있어서 save를 따로 안 해도 변경이 감지되어 DB에 자동 저장돼!)
     }
 }

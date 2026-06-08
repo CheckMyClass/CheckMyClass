@@ -18,13 +18,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+// 예약 신청 페이지 / 예약 처리 담당 컨트롤러
 @Controller
 @RequiredArgsConstructor
 public class ReservationController {
 
     private final ReservationService reservationService;
 
-    // 1. 예약 화면 보여주기 (기존 reservation.php 역할)
+    // 예약 신청 화면 (날짜·시간·장비 필터로 강의실 검색)
     @GetMapping("/reservation")
     public String reservationPage(
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
@@ -35,10 +36,10 @@ public class ReservationController {
 
         // 로그인 체크
         if (session.getAttribute("userId") == null) {
-            return "redirect:/"; // 로그인 페이지로
+            return "redirect:/";
         }
 
-        // 파라미터가 없으면 기본값 세팅 (오늘, 17:00 ~ 18:00)
+        // 값이 없으면 기본값 설정 (오늘, 17:00~18:00)
         if (date == null) date = LocalDate.now();
         if (start_time == null) start_time = LocalTime.of(17, 0);
         if (end_time == null) end_time = LocalTime.of(18, 0);
@@ -46,10 +47,10 @@ public class ReservationController {
 
         String dateDisplay = date.format(DateTimeFormatter.ofPattern("yyyy년 M월 d일"));
 
-        // 필터에 맞는 강의실 가져오기
+        // 필터 조건에 맞는 강의실 조회
         List<Classroom> classrooms = reservationService.searchClassrooms(filters);
 
-        // HTML로 데이터 넘겨주기
+        // 화면에 데이터 전달
         model.addAttribute("date", date);
         model.addAttribute("start_time", start_time);
         model.addAttribute("end_time", end_time);
@@ -57,10 +58,10 @@ public class ReservationController {
         model.addAttribute("classrooms", classrooms);
         model.addAttribute("dateDisplay", dateDisplay);
 
-        return "reservation"; // reservation.html 띄우기
+        return "reservation";
     }
 
-    // 2. 예약 폼 제출 처리 (기존 reservation_process.php 역할)
+    // 예약 폼 제출 처리
     @PostMapping("/reservation/process")
     public String processReservation(
             @RequestParam Integer class_id,
@@ -74,18 +75,15 @@ public class ReservationController {
         if (studentNumber == null) return "redirect:/";
 
         try {
-            // 서비스에 예약 저장 심부름 시키기
+            // 예약 저장
             reservationService.makeReservation(studentNumber, class_id, date, start_time, end_time, purpose);
             redirectAttributes.addFlashAttribute("message", "예약 신청이 완료되었습니다.");
-            return "redirect:/mypage/history"; // 성공 시 마이페이지로 이동
+            return "redirect:/mypage/history";
 
         } catch (IllegalArgumentException e) {
-            // 에러 발생 시 알림창 띄우고 다시 원래 페이지로
+            // 실패 시 에러 메시지와 함께 예약 화면으로 복귀
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             return "redirect:/reservation?date=" + date + "&start_time=" + start_time + "&end_time=" + end_time;
         }
     }
-
-
-
 }
