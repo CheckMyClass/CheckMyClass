@@ -2,30 +2,79 @@ package com.checkmyclass.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authorization.AuthorizationDecision;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration // 스프링에게 "이거 설정 파일이니까 시작할 때 꼭 읽어!" 라고 알려주는 역할
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
+// 스프링 시큐리티 설정 (비밀번호 암호화 / 접근 권한)
+@Configuration
 public class SecurityConfig {
 
-    // 🌟 여기가 핵심! 스프링 창고에 BCrypt 암호화 기계를 하나 딱 만들어 두는 거야.
-    // 이제 UserService가 달라고 하면 스프링이 이걸 쓱 꺼내서 줌!
+    // 비밀번호 암호화에 사용할 BCrypt 인코더 등록
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // 🌟 (필수) 시큐리티가 허락 없이 자기들만의 기본 로그인 창을 띄우는 걸 막고,
-    // 우리가 만든 예쁜 HTML 화면을 쓸 수 있게 모든 길을 열어주는 설정
+    // 시큐리티 기본 로그인 폼 비활성화 + 직접 만든 화면 사용을 위한 접근 허용 설정
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // 폼 전송 테스트를 위해 우선 CSRF 방어 잠시 해제
+                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                )
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll() // 일단 모든 주소 접근 허용! (나중에 권한별로 막을 수 있음)
+                        .requestMatchers("/", "/login", "/register", "/error").permitAll()
+                        .requestMatchers(
+                                "/global.css",
+                                "/styleguide.css",
+                                "/style.css",
+                                "/*.png",
+                                "/*.jpg",
+                                "/*.jpeg",
+                                "/*.gif",
+                                "/*.webp",
+                                "/favicon.ico"
+                        ).permitAll()
+                        .requestMatchers("/manager/approve", "/manager/reject", "/manager/update-status")
+                        .access((authentication, context) -> new AuthorizationDecision(hasRole(context.getRequest(), "ADMIN")))
+                        .requestMatchers("/manager/**")
+                        .access((authentication, context) -> new AuthorizationDecision(hasAnyRole(context.getRequest(), "ADMIN", "PROFESSOR")))
+                        .anyRequest()
+                        .access((authentication, context) -> new AuthorizationDecision(isLoggedIn(context.getRequest())))
                 );
         return http.build();
+    }
+
+    private boolean isLoggedIn(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        return session != null && session.getAttribute("userId") != null;
+    }
+
+    private boolean hasRole(HttpServletRequest request, String role) {
+        HttpSession session = request.getSession(false);
+        return session != null && role.equals(session.getAttribute("role"));
+    }
+
+    private boolean hasAnyRole(HttpServletRequest request, String... roles) {
+        HttpSession session = request.getSession(false);
+        if (session == null) return false;
+
+        Object currentRole = session.getAttribute("role");
+        for (String role : roles) {
+            if (role.equals(currentRole)) return true;
+        }
+        return false;
     }
 }

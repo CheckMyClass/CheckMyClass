@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .main {
   display: flex;
   flex-direction: column;
@@ -63,9 +64,9 @@
         background-color: #e0e0e0;
     }
 
-/*[통합 헤더 스타일] 모든 페이지 공통 적용*/
 
-/* 1. 헤더 전체 박스 */
+
+
 .header {
   display: flex;
   align-items: center;    
@@ -167,7 +168,6 @@
   width: 44px;
   height: 44px;
   aspect-ratio: 1;
-  background-image: url(./img/1.png);
   background-size: cover;
   background-position: 50% 50%;
 }
@@ -252,7 +252,7 @@
 }
 
 .main .text-wrapper-3 {
-  font-family: "Pretendard Variable-Medium";
+  font-family: var(--main-font-font-family);
   font-weight: 500;
   color: var(--black);
   position: relative;
@@ -327,7 +327,7 @@
   border-radius: 20px;
 }
 
-/* Inject original CSS code here */
+
 
 .main .frame-2 {
   cursor: pointer;
@@ -459,7 +459,7 @@ body {
   margin-top: -1px;
   position: relative;
   width: fit-content;
-  font-family: "Pretendard Variable-Medium";
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: #333333;
   font-size: 14px;
@@ -492,7 +492,7 @@ body {
 .log-in .div {
   position: relative;
   width: fit-content;
-  font-family: "Pretendard Variable-Medium";
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: #333333;
   font-size: 14px;
@@ -533,7 +533,7 @@ body {
   position: relative;
   width: fit-content;
   margin-top: -1px;
-  font-family: "Pretendard Variable-Medium";
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: var(--white);
   font-size: 14px;
@@ -561,7 +561,7 @@ body {
 .text-link .text-wrapper {
   position: relative;
   width: fit-content;
-  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 400;
   color: var(--main);
   font-size: 12px;
@@ -631,7 +631,7 @@ body {
 
 .register .text-wrapper {
   margin-top: -1px;
-  font-family: "Pretendard Variable-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   text-align: center;
   position: relative;
   width: fit-content;
@@ -655,7 +655,7 @@ body {
 
 .register .div {
   margin-top: -1px;
-  font-family: "Inter-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   position: relative;
   width: fit-content;
   font-weight: 700;
@@ -687,7 +687,7 @@ body {
 }
 
 .register .text-wrapper-2 {
-  font-family: "Inter-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   position: relative;
   width: fit-content;
   font-weight: 700;
@@ -762,7 +762,7 @@ body {
   position: relative;
   width: fit-content;
   margin-top: -1px;
-  font-family: "Inter-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: var(--x-0);
   font-size: 14px;
@@ -776,7 +776,7 @@ body {
   height: 37px;
   border: none;
   background: transparent;
-  font-family: "Inter-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: #333333;
   font-size: 14px;
@@ -851,9 +851,9 @@ body {
   position: relative;
   width: fit-content;
   margin-top: -1px;
-  font-family: "Inter-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 700;
-  color: var(—x-0);
+  color: var(--x-0);
   font-size: 14px;
   letter-spacing: 0;
   line-height: normal;
@@ -898,7 +898,7 @@ body {
   user-select: none;
 }
 
-/* 체크박스 외곽선 */
+
 .register .check-box-outline {
   position: relative;
   width: 24px;
@@ -941,10 +941,8 @@ body {
   display: flex;
   flex-direction: column;
   width: 402px;
-  /* height: 874px; */
   align-items: center;
   gap: 12px;
-  padding: 66px 0px 0px;
   position: relative;
   background-color: var(--background);
 }
@@ -1019,7 +1017,7 @@ body {
   width: fit-content;
   margin-top: -8px;
   margin-bottom: -6px;
-  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 500;
   color: var(--background);
   font-size: 15px;
@@ -1047,7 +1045,7 @@ body {
 .reservation .text-wrapper-3 {
   margin-top: -8px;
   margin-bottom: -6px;
-  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 500;
   color: var(--main);
   position: relative;
@@ -1122,7 +1120,7 @@ body {
   align-items: center;
   justify-content: space-around;
   position: relative;
-  /* 3w */
+  
   width: 100%;
   flex: 0 0 auto;
 }
@@ -1131,7 +1129,7 @@ body {
   position: relative;
   width: fit-content;
   margin-top: -1px;
-  font-family: "Pretendard-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: var(--main);
   font-size: 20px;
@@ -1232,7 +1230,7 @@ body {
   position: relative;
   margin-right: -5.5px;
 }
-/* Original CSS should be injected here */
+
 
 .reservation button {
   background: none;
@@ -1287,391 +1285,7 @@ body {
   display: block;
 }
 
-/* 이후 수정해야 함*/
 
-.manager {
-  display: flex;
-  flex-direction: column;
-  width: 402px;
-  height: 874px;
-  align-items: center;
-  gap: 12px;
-  padding: 66px 0px 0px;
-  position: relative;
-  background-color: var(--background);
-}
-
-.manager .frame {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  position: relative;
-  flex: 0 0 auto;
-  margin-top: -7px;
-  margin-bottom: -7px;
-}
-
-.manager .reservation {
-  display: flex;
-  width: 351px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px;
-  position: relative;
-  flex: 0 0 auto;
-  background-color: var(--background);
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid;
-  border-color: var(--gray);
-}
-
-.manager .div {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.manager .frame-2 {
-  display: flex;
-  flex-direction: column;
-  width: 233px;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 10px;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.manager .text-wrapper {
-  margin-top: -1px;
-  font-size: 22px;
-  position: relative;
-  width: fit-content;
-  font-family: "Pretendard-Bold", Helvetica;
-  font-weight: 700;
-  color: var(--black);
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-}
-
-.manager .input {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 4px 8px;
-  position: relative;
-  flex: 0 0 auto;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.manager .element {
-  margin-top: -1px;
-  font-family: "Pretendard-Medium", Helvetica;
-  font-weight: 500;
-  color: var(--black);
-  font-size: 16px;
-  position: relative;
-  width: fit-content;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-.manager .frame-3 {
-  display: flex;
-  width: 233px;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.manager .text-wrapper-2 {
-  font-family: "Pretendard-Bold", Helvetica;
-  font-weight: 700;
-  color: var(--black);
-  font-size: 18px;
-  white-space: nowrap;
-  position: relative;
-  width: fit-content;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-.manager .text-wrapper-3 {
-  margin-top: -1px;
-  font-family: "Pretendard-Medium", Helvetica;
-  font-weight: 500;
-  color: var(--black);
-  font-size: 18px;
-  white-space: nowrap;
-  position: relative;
-  width: fit-content;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-.manager .div-wrapper {
-  border: 1px solid;
-  border-color: var(--x-200);
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 4px 8px;
-  position: relative;
-  flex: 0 0 auto;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.manager .view {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 20px;
-  position: relative;
-  flex: 0 0 auto;
-  background-color: var(--main);
-  border-radius: 20px;
-}
-
-.manager .text-wrapper-4 {
-  margin-top: -1px;
-  font-family: var(--main-font-font-family);
-  font-weight: var(--main-font-font-weight);
-  color: var(--white);
-  font-size: var(--main-font-font-size);
-  white-space: nowrap;
-  position: relative;
-  width: fit-content;
-  letter-spacing: var(--main-font-letter-spacing);
-  line-height: var(--main-font-line-height);
-  font-style: var(--main-font-font-style);
-}
-
-.manager .frame-4 {
-  display: flex;
-  flex-direction: column;
-  width: 354px;
-  height: 204px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  position: relative;
-  background-color: var(--gray);
-}
-
-.manager .text-wrapper-5 {
-  font-size: var(--main-font-font-size);
-  position: relative;
-  width: fit-content;
-  font-family: var(--main-font-font-family);
-  font-weight: var(--main-font-font-weight);
-  color: var(--black);
-  letter-spacing: var(--main-font-letter-spacing);
-  line-height: var(--main-font-line-height);
-  white-space: nowrap;
-  font-style: var(--main-font-font-style);
-}
-
-.reservation {
-  display: flex;
-  flex-direction: column;
-  width: 402px;
-  height: 1300px;
-  align-items: center;
-  gap: 12px;
-  padding: 66px 0px 0px;
-  position: relative;
-  background-color: var(--background);
-}
-
-.reservation .frame {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  position: relative;
-  flex: 0 0 auto;
-  margin-top: -7px;
-  margin-bottom: -7px;
-}
-
-.reservation .view {
-  display: flex;
-  width: 228px;
-  gap: 10px;
-  padding: 4px 10px;
-  background-color: var(--main);
-  border-radius: 12px;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.reservation .text-wrapper {
-  margin-top: -1px;
-  font-family: var(--main-font-font-family);
-  font-weight: var(--main-font-font-weight);
-  color: var(--white);
-  position: relative;
-  width: fit-content;
-  font-size: var(--main-font-font-size);
-  letter-spacing: var(--main-font-letter-spacing);
-  line-height: var(--main-font-line-height);
-  white-space: nowrap;
-  font-style: var(--main-font-font-style);
-}
-
-.reservation .div {
-  display: flex;
-  gap: 12px;
-  align-self: stretch;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.reservation .div-wrapper {
-  display: inline-flex;
-  max-height: 24px;
-  height: 24px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  position: relative;
-  flex: 0 0 auto;
-  background-color: var(--main);
-  border-radius: 20px;
-  border: 1px solid;
-  border-color: var(--main);
-}
-
-.reservation .text-wrapper-2 {
-  position: relative;
-  width: fit-content;
-  margin-top: -8px;
-  margin-bottom: -6px;
-  font-family: "Pretendard Variable-Medium", Helvetica;
-  font-weight: 500;
-  color: var(--background);
-  font-size: 15px;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-}
-
-.reservation .frame-2 {
-  display: inline-flex;
-  max-height: 24px;
-  height: 24px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  position: relative;
-  flex: 0 0 auto;
-  background-color: var(--background);
-  border-radius: 20px;
-  border: 1px solid;
-  border-color: var(--main);
-}
-
-.reservation .text-wrapper-3 {
-  margin-top: -8px;
-  margin-bottom: -6px;
-  font-family: "Pretendard Variable-Medium", Helvetica;
-  font-weight: 500;
-  color: var(--main);
-  position: relative;
-  width: fit-content;
-  font-size: 15px;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-}
-
-.reservation .frame-3 {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 4px 8px;
-  position: relative;
-  flex: 0 0 auto;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid;
-  border-color: var(--main);
-}
-
-.reservation .text-wrapper-4 {
-  margin-top: -1px;
-  font-family: var(--main-font-font-family);
-  font-weight: var(--main-font-font-weight);
-  color: var(--main);
-  position: relative;
-  width: fit-content;
-  font-size: var(--main-font-font-size);
-  letter-spacing: var(--main-font-letter-spacing);
-  line-height: var(--main-font-line-height);
-  white-space: nowrap;
-  font-style: var(--main-font-font-style);
-}
-
-.reservation .frame-4 {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 4px;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.reservation .frame-5 {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 4px 8px;
-  position: relative;
-  flex: 0 0 auto;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.reservation .frame-6 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  flex: 0 0 auto;
-}
-
-.reservation .frame-7 {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 0px 24px;
-  position: relative;
-  /* 3w */
   width: 100%;
   flex: 0 0 auto;
 }
@@ -1680,7 +1294,7 @@ body {
   position: relative;
   width: fit-content;
   margin-top: -1px;
-  font-family: "Pretendard-Bold", Helvetica;
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: var(--main);
   font-size: 20px;
@@ -1838,19 +1452,17 @@ body {
   display: block;
 }
 
-/* =========================================
-   Mypage (마이페이지) 전용 스타일
-   ========================================= */
+
 
 .mypage {
   display: flex;
   flex-direction: column;
   width: 402px;
 
-  /* 높이 자동 조절 및 여백 */
+  
   height: auto;
   min-height: 100vh;
-  padding: 66px 0px 50px 0px;
+  padding: 0px 0px 50px 0px;
 
   align-items: center;
   gap: 16px;
@@ -1858,7 +1470,7 @@ body {
   background-color: var(--background);
 }
 
-/* 프로필 섹션 */
+
 .mypage .profile {
   display: flex;
   align-items: center;
@@ -1882,7 +1494,7 @@ body {
   line-height: 1.4;
 }
 
-/* 학생회원 뱃지 */
+
 .mypage .div-wrapper {
   padding: 4px 10px;
   background-color: var(--main);
@@ -1956,7 +1568,7 @@ body {
   margin: 0;
 }
 
-/* 각 행 (라벨 + 값) */
+
 .mypage .frame-3 {
   display: flex;
   justify-content: space-between;
@@ -1966,7 +1578,7 @@ body {
   margin: 0;
 }
 
-/* 라벨 (왼쪽 정렬) */
+
 .mypage .text-wrapper-4 {
   font-family: var(--main-font-font-family);
   font-weight: 800;
@@ -1975,7 +1587,7 @@ body {
   text-align: left;
 }
 
-/* 값 (오른쪽 정렬) */
+
 .mypage .text-wrapper-5 {
   font-family: var(--main-font-font-family);
   font-weight: 500;
@@ -1985,7 +1597,7 @@ body {
   flex: 1;
 }
 
-/* 대여 목적 박스 */
+
 .mypage .purpose-box {
   border: 1px solid #ddd;
   background-color: var(--light-gray);
@@ -1996,7 +1608,7 @@ body {
   margin-left: auto;
 }
 
-/* 상태별 색상 클래스 */
+
 .status-waiting {
   border-color: var(--main);
   color: var(--main);
@@ -2034,9 +1646,7 @@ body {
   margin-left: 10px;
 }
 
-/* =========================================
-   Manager (관리자 페이지) 스타일 업데이트
-   ========================================= */
+
 
 .manager {
   height: auto;
@@ -2045,7 +1655,7 @@ body {
   width: 402px;
   align-items: center;
   gap: 15px;
-  padding: 66px 0px 100px; 
+  padding: 0px 0px 100px;
   background-color: var(--background);
 }
 
@@ -2065,7 +1675,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* 왼쪽 정보 컨테이너 */
+
 .manager .info-container {
   display: flex;
   flex-direction: column;
@@ -2073,7 +1683,7 @@ body {
   width: 75%;
 }
 
-/* 각 행 (Row) - 테두리 없음 */
+
 .manager .info-row {
   display: flex;
   justify-content: space-between;
@@ -2081,9 +1691,9 @@ body {
   width: 100%;
 }
 
-/* 라벨 (왼쪽 정렬) */
+
 .manager .label {
-  font-family: "Pretendard", sans-serif;
+  font-family: var(--main-font-font-family);
   font-weight: 800;
   color: var(--black);
   font-size: 15px;
@@ -2092,9 +1702,9 @@ body {
   text-align: left;
 }
 
-/* 값 (오른쪽 정렬) */
+
 .manager .value {
-  font-family: "Pretendard", sans-serif;
+  font-family: var(--main-font-font-family);
   font-weight: 500;
   color: #333;
   font-size: 15px;
@@ -2112,9 +1722,9 @@ body {
   margin-bottom: 0px;
 }
 
-/* 예약자 라벨 (17px) */
+
 .manager .user-label {
-  font-family: "Pretendard", sans-serif;
+  font-family: var(--main-font-font-family);
   font-weight: 800;
   color: var(--black);
   font-size: 20px;
@@ -2122,9 +1732,9 @@ body {
   margin-bottom: 5px;
 }
 
-/* 예약자 정보 값 (15px, 들여쓰기) */
+
 .manager .user-value {
-  font-family: "Pretendard", sans-serif;
+  font-family: var(--main-font-font-family);
   font-weight: 500;
   color: #333;
   font-size: 15px;
@@ -2133,7 +1743,7 @@ body {
   padding-left: 10px;
 }
 
-/* 대여 목적 박스 (마이페이지와 동일) */
+
 .manager .purpose-box {
   border: 1px solid #ddd;
   background-color: var(--light-gray);
@@ -2144,7 +1754,7 @@ body {
   margin-left: auto;
 }
 
-/* --- 승인 버튼 (오른쪽 배치) --- */
+
 .manager .approve-btn {
   background: none;
   border: none;
@@ -2194,13 +1804,13 @@ background: none;
 }
 
 .manager .btn-text {
-  font-family: "Pretendard Variable-Midium";
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: white;
   font-size: 14px;
 }
 
-/* 그래프 영역 */
+
 .manager .graph-box {
   display: flex;
   align-items: center;
@@ -2214,7 +1824,7 @@ background: none;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 .manager .graph-text {
-  font-family: "Pretendard Variable-Midium";
+  font-family: var(--main-font-font-family);
   font-weight: 700;
   color: #888;
   font-size: 16px;

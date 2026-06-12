@@ -4,10 +4,9 @@ import com.checkmyclass.domain.Major;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
-import java.util.Optional;
-
+// 학과(Major) 데이터 접근 Repository
 public interface MajorRepository extends JpaRepository<Major, Integer> {
-    // 기본 CRUD만으로 충분함
-    // 회원가입 시 학과명으로 Major 찾기
+
+    // 회원가입 시 학과명으로 학과 조회
     Optional<Major> findByMajorName(String majorName);
 }
