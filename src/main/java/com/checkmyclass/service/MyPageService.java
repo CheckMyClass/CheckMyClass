@@ -24,7 +24,14 @@ public class MyPageService {
 
     // 예약 취소 (삭제) - 쓰기 작업이므로 읽기 전용 해제
     @Transactional
-    public void cancelReservation(Integer reservationId) {
-        reservationRepository.deleteById(reservationId);
+    public void cancelReservation(Integer reservationId, Integer userId) {
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new IllegalArgumentException("Reservation not found."));
+
+        if (!reservation.getUser().getId().equals(userId)) {
+            throw new IllegalArgumentException("Cannot cancel another user's reservation.");
+        }
+
+        reservationRepository.delete(reservation);
     }
 }

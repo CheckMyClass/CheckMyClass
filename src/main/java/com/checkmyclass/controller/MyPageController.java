@@ -52,9 +52,15 @@ public class MyPageController {
 
     // 학생 본인 예약 취소
     @PostMapping("/reservation/cancel")
-    public String cancelReservation(@RequestParam Integer reservationId, RedirectAttributes redirectAttributes) {
+    public String cancelReservation(@RequestParam Integer reservationId,
+                                    HttpSession session,
+                                    RedirectAttributes redirectAttributes) {
+        String studentNumber = (String) session.getAttribute("userId");
+        if (studentNumber == null) return "redirect:/";
+
         try {
-            myPageService.cancelReservation(reservationId);
+            User user = userService.getUserInfo(studentNumber);
+            myPageService.cancelReservation(reservationId, user.getId());
             redirectAttributes.addFlashAttribute("message", "예약이 성공적으로 취소되었습니다.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "예약 취소 중 오류가 발생했습니다.");
