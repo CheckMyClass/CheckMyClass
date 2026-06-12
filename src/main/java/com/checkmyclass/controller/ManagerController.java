@@ -24,7 +24,7 @@ public class ManagerController {
     public String managerPage(HttpSession session, Model model) {
         // 관리자/교직원 권한 체크
         String role = (String) session.getAttribute("role");
-        if (role == null || (!role.equals("ADMIN") && !role.equals("STAFF"))) {
+        if (role == null || (!role.equals("ADMIN") && !role.equals("PROFESSOR"))) {
             return "redirect:/";
         }
 
@@ -38,7 +38,7 @@ public class ManagerController {
     @GetMapping("/manager/history")
     public String managerHistoryPage(HttpSession session, Model model) {
         String role = (String) session.getAttribute("role");
-        if (role == null || (!role.equals("ADMIN") && !role.equals("STAFF"))) {
+        if (role == null || (!role.equals("ADMIN") && !role.equals("PROFESSOR"))) {
             return "redirect:/";
         }
 

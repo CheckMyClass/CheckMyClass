@@ -1,14 +1,14 @@
-/* 전역 기본 스타일 (CSS 초기화 + 공통 설정) */
+@charset "UTF-8";
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 
-/* 모든 요소: 폰트 부드럽게, box-sizing 통일 */
+
 * {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   font-family: var(--main-font-font-family);
 }
 
-/* 페이지 전체 높이 채우기 */
+
 html,
 body {
   margin: 0px;
@@ -24,13 +24,38 @@ textarea {
   font-family: inherit;
 }
 
-/* 버튼 키보드 포커스 표시 */
+
 button:focus-visible {
   outline: 2px solid #4a90e2 !important;
   outline: -webkit-focus-ring-color auto 5px !important;
 }
 
-/* 링크 밑줄 제거 */
+
 a {
   text-decoration: none;
+}
+
+.sidebar-logout-form {
+  margin-top: auto;
+  padding: 20px;
+}
+
+.sidebar-logout-button {
+  width: 100%;
+  padding: 12px 18px;
+  border: 1px solid #e4e4e7;
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--main, #203b55);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.sidebar-logout-button:hover,
+.sidebar-logout-button:focus-visible {
+  background: var(--main, #203b55);
+  border-color: var(--main, #203b55);
+  color: #ffffff;
 }

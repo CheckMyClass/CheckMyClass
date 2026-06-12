@@ -33,6 +33,11 @@ public class MainController {
         return "login";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     // 회원가입 화면
     @GetMapping("/register")
     public String register() {
@@ -86,11 +91,17 @@ public class MainController {
 
         // 관리자/교직원은 관리자 페이지로, 그 외는 메인으로
         String userRole = loginUser.getRole().name();
-        if ("ADMIN".equals(userRole) || "STAFF".equals(userRole)) {
+        if ("ADMIN".equals(userRole) || "PROFESSOR".equals(userRole)) {
             return "redirect:/manager";
         }
 
         return "redirect:/main";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
     }
 
     // 메인 페이지 (회원 정보 + 인기 강의실 TOP 3)

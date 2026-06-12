@@ -1,11 +1,4 @@
-/* =========================================================
-   style.css
-   ?¼ê·¸ë§?Figma)?ì„œ ?ë™ ?ì„±???”ë©´ ?¤í??¼ì‹œ??
-   ê°??˜ì´ì§€???ˆì´?„ì›ƒÂ·ì¹´ë“œÂ·ë²„íŠ¼ ???¸ë? ?”ì?¸ì„ ?•ì˜?œë‹¤.
-   ?´ë˜?¤ëª…(.frame-x, .text-wrapper-x ???€ ?¼ê·¸ë§ˆê? ?ë™ ë¶€?¬í•œ ?´ë¦„?´ë©°,
-   ?”ë©´ë³?ì¶”ê? ?¤í??¼ì? ê°?HTML ?Œì¼??<style> ?ˆì— ?°ë¡œ ?•ì˜?˜ì–´ ?ˆë‹¤.
-   ========================================================= */
-
+@charset "UTF-8";
 .main {
   display: flex;
   flex-direction: column;
@@ -71,9 +64,9 @@
         background-color: #e0e0e0;
     }
 
-/*[?µí•© ?¤ë” ?¤í??? ëª¨ë“  ?˜ì´ì§€ ê³µí†µ ?ìš©*/
 
-/* 1. ?¤ë” ?„ì²´ ë°•ìŠ¤ */
+
+
 .header {
   display: flex;
   align-items: center;    
@@ -334,7 +327,7 @@
   border-radius: 20px;
 }
 
-/* Inject original CSS code here */
+
 
 .main .frame-2 {
   cursor: pointer;
@@ -905,7 +898,7 @@ body {
   user-select: none;
 }
 
-/* ì²´í¬ë°•ìŠ¤ ?¸ê³½??*/
+
 .register .check-box-outline {
   position: relative;
   width: 24px;
@@ -1127,7 +1120,7 @@ body {
   align-items: center;
   justify-content: space-around;
   position: relative;
-  /* 3w */
+  
   width: 100%;
   flex: 0 0 auto;
 }
@@ -1237,7 +1230,7 @@ body {
   position: relative;
   margin-right: -5.5px;
 }
-/* Original CSS should be injected here */
+
 
 .reservation button {
   background: none;
@@ -1292,388 +1285,7 @@ body {
   display: block;
 }
 
-/* ?´í›„ ?˜ì •?´ì•¼ ??/
 
-.manager {
-  display: flex;
-  flex-direction: column;
-  width: 402px;
-  height: 874px;
-  align-items: center;
-  gap: 12px;
-  position: relative;
-  background-color: var(--background);
-}
-
-.manager .frame {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  position: relative;
-  flex: 0 0 auto;
-  margin-top: -7px;
-  margin-bottom: -7px;
-}
-
-.manager .reservation {
-  display: flex;
-  width: 351px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px;
-  position: relative;
-  flex: 0 0 auto;
-  background-color: var(--background);
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid;
-  border-color: var(--gray);
-}
-
-.manager .div {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.manager .frame-2 {
-  display: flex;
-  flex-direction: column;
-  width: 233px;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 10px;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.manager .text-wrapper {
-  margin-top: -1px;
-  font-size: 22px;
-  position: relative;
-  width: fit-content;
-  font-family: var(--main-font-font-family);
-  font-weight: 700;
-  color: var(--black);
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-}
-
-.manager .input {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 4px 8px;
-  position: relative;
-  flex: 0 0 auto;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.manager .element {
-  margin-top: -1px;
-  font-family: var(--main-font-font-family);
-  font-weight: 500;
-  color: var(--black);
-  font-size: 16px;
-  position: relative;
-  width: fit-content;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-.manager .frame-3 {
-  display: flex;
-  width: 233px;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.manager .text-wrapper-2 {
-  font-family: var(--main-font-font-family);
-  font-weight: 700;
-  color: var(--black);
-  font-size: 18px;
-  white-space: nowrap;
-  position: relative;
-  width: fit-content;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-.manager .text-wrapper-3 {
-  margin-top: -1px;
-  font-family: var(--main-font-font-family);
-  font-weight: 500;
-  color: var(--black);
-  font-size: 18px;
-  white-space: nowrap;
-  position: relative;
-  width: fit-content;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-.manager .div-wrapper {
-  border: 1px solid;
-  border-color: var(--x-200);
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 4px 8px;
-  position: relative;
-  flex: 0 0 auto;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.manager .view {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 20px;
-  position: relative;
-  flex: 0 0 auto;
-  background-color: var(--main);
-  border-radius: 20px;
-}
-
-.manager .text-wrapper-4 {
-  margin-top: -1px;
-  font-family: var(--main-font-font-family);
-  font-weight: var(--main-font-font-weight);
-  color: var(--white);
-  font-size: var(--main-font-font-size);
-  white-space: nowrap;
-  position: relative;
-  width: fit-content;
-  letter-spacing: var(--main-font-letter-spacing);
-  line-height: var(--main-font-line-height);
-  font-style: var(--main-font-font-style);
-}
-
-.manager .frame-4 {
-  display: flex;
-  flex-direction: column;
-  width: 354px;
-  height: 204px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  position: relative;
-  background-color: var(--gray);
-}
-
-.manager .text-wrapper-5 {
-  font-size: var(--main-font-font-size);
-  position: relative;
-  width: fit-content;
-  font-family: var(--main-font-font-family);
-  font-weight: var(--main-font-font-weight);
-  color: var(--black);
-  letter-spacing: var(--main-font-letter-spacing);
-  line-height: var(--main-font-line-height);
-  white-space: nowrap;
-  font-style: var(--main-font-font-style);
-}
-
-.reservation {
-  display: flex;
-  flex-direction: column;
-  width: 402px;
-  align-items: center;
-  gap: 12px;
-  position: relative;
-  background-color: var(--background);
-}
-
-.reservation .frame {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  position: relative;
-  flex: 0 0 auto;
-  margin-top: -7px;
-  margin-bottom: -7px;
-}
-
-.reservation .view {
-  display: flex;
-  width: 228px;
-  gap: 10px;
-  padding: 4px 10px;
-  background-color: var(--main);
-  border-radius: 12px;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.reservation .text-wrapper {
-  margin-top: -1px;
-  font-family: var(--main-font-font-family);
-  font-weight: var(--main-font-font-weight);
-  color: var(--white);
-  position: relative;
-  width: fit-content;
-  font-size: var(--main-font-font-size);
-  letter-spacing: var(--main-font-letter-spacing);
-  line-height: var(--main-font-line-height);
-  white-space: nowrap;
-  font-style: var(--main-font-font-style);
-}
-
-.reservation .div {
-  display: flex;
-  gap: 12px;
-  align-self: stretch;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.reservation .div-wrapper {
-  display: inline-flex;
-  max-height: 24px;
-  height: 24px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  position: relative;
-  flex: 0 0 auto;
-  background-color: var(--main);
-  border-radius: 20px;
-  border: 1px solid;
-  border-color: var(--main);
-}
-
-.reservation .text-wrapper-2 {
-  position: relative;
-  width: fit-content;
-  margin-top: -8px;
-  margin-bottom: -6px;
-  font-family: var(--main-font-font-family);
-  font-weight: 500;
-  color: var(--background);
-  font-size: 15px;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-}
-
-.reservation .frame-2 {
-  display: inline-flex;
-  max-height: 24px;
-  height: 24px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  position: relative;
-  flex: 0 0 auto;
-  background-color: var(--background);
-  border-radius: 20px;
-  border: 1px solid;
-  border-color: var(--main);
-}
-
-.reservation .text-wrapper-3 {
-  margin-top: -8px;
-  margin-bottom: -6px;
-  font-family: var(--main-font-font-family);
-  font-weight: 500;
-  color: var(--main);
-  position: relative;
-  width: fit-content;
-  font-size: 15px;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-}
-
-.reservation .frame-3 {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 4px 8px;
-  position: relative;
-  flex: 0 0 auto;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid;
-  border-color: var(--main);
-}
-
-.reservation .text-wrapper-4 {
-  margin-top: -1px;
-  font-family: var(--main-font-font-family);
-  font-weight: var(--main-font-font-weight);
-  color: var(--main);
-  position: relative;
-  width: fit-content;
-  font-size: var(--main-font-font-size);
-  letter-spacing: var(--main-font-letter-spacing);
-  line-height: var(--main-font-line-height);
-  white-space: nowrap;
-  font-style: var(--main-font-font-style);
-}
-
-.reservation .frame-4 {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 4px;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.reservation .frame-5 {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 4px 8px;
-  position: relative;
-  flex: 0 0 auto;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.reservation .frame-6 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  flex: 0 0 auto;
-}
-
-.reservation .frame-7 {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 0px 24px;
-  position: relative;
-  /* 3w */
   width: 100%;
   flex: 0 0 auto;
 }
@@ -1840,16 +1452,14 @@ body {
   display: block;
 }
 
-/* =========================================
-   Mypage (ë§ˆì´?˜ì´ì§€) ?„ìš© ?¤í???
-   ========================================= */
+
 
 .mypage {
   display: flex;
   flex-direction: column;
   width: 402px;
 
-  /* ?’ì´ ?ë™ ì¡°ì ˆ ë°??¬ë°± */
+  
   height: auto;
   min-height: 100vh;
   padding: 0px 0px 50px 0px;
@@ -1860,7 +1470,7 @@ body {
   background-color: var(--background);
 }
 
-/* ?„ë¡œ???¹ì…˜ */
+
 .mypage .profile {
   display: flex;
   align-items: center;
@@ -1884,7 +1494,7 @@ body {
   line-height: 1.4;
 }
 
-/* ?™ìƒ?Œì› ë±ƒì? */
+
 .mypage .div-wrapper {
   padding: 4px 10px;
   background-color: var(--main);
@@ -1958,7 +1568,7 @@ body {
   margin: 0;
 }
 
-/* ê°???(?¼ë²¨ + ê°? */
+
 .mypage .frame-3 {
   display: flex;
   justify-content: space-between;
@@ -1968,7 +1578,7 @@ body {
   margin: 0;
 }
 
-/* ?¼ë²¨ (?¼ìª½ ?•ë ¬) */
+
 .mypage .text-wrapper-4 {
   font-family: var(--main-font-font-family);
   font-weight: 800;
@@ -1977,7 +1587,7 @@ body {
   text-align: left;
 }
 
-/* ê°?(?¤ë¥¸ìª??•ë ¬) */
+
 .mypage .text-wrapper-5 {
   font-family: var(--main-font-font-family);
   font-weight: 500;
@@ -1987,7 +1597,7 @@ body {
   flex: 1;
 }
 
-/* ?€??ëª©ì  ë°•ìŠ¤ */
+
 .mypage .purpose-box {
   border: 1px solid #ddd;
   background-color: var(--light-gray);
@@ -1998,7 +1608,7 @@ body {
   margin-left: auto;
 }
 
-/* ?íƒœë³??‰ìƒ ?´ë˜??*/
+
 .status-waiting {
   border-color: var(--main);
   color: var(--main);
@@ -2036,9 +1646,7 @@ body {
   margin-left: 10px;
 }
 
-/* =========================================
-   Manager (ê´€ë¦¬ì ?˜ì´ì§€) ?¤í????…ë°?´íŠ¸
-   ========================================= */
+
 
 .manager {
   height: auto;
@@ -2067,7 +1675,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* ?¼ìª½ ?•ë³´ ì»¨í…Œ?´ë„ˆ */
+
 .manager .info-container {
   display: flex;
   flex-direction: column;
@@ -2075,7 +1683,7 @@ body {
   width: 75%;
 }
 
-/* ê°???(Row) - ?Œë‘ë¦??†ìŒ */
+
 .manager .info-row {
   display: flex;
   justify-content: space-between;
@@ -2083,7 +1691,7 @@ body {
   width: 100%;
 }
 
-/* ?¼ë²¨ (?¼ìª½ ?•ë ¬) */
+
 .manager .label {
   font-family: var(--main-font-font-family);
   font-weight: 800;
@@ -2094,7 +1702,7 @@ body {
   text-align: left;
 }
 
-/* ê°?(?¤ë¥¸ìª??•ë ¬) */
+
 .manager .value {
   font-family: var(--main-font-font-family);
   font-weight: 500;
@@ -2114,7 +1722,7 @@ body {
   margin-bottom: 0px;
 }
 
-/* ?ˆì•½???¼ë²¨ (17px) */
+
 .manager .user-label {
   font-family: var(--main-font-font-family);
   font-weight: 800;
@@ -2124,7 +1732,7 @@ body {
   margin-bottom: 5px;
 }
 
-/* ?ˆì•½???•ë³´ ê°?(15px, ?¤ì—¬?°ê¸°) */
+
 .manager .user-value {
   font-family: var(--main-font-font-family);
   font-weight: 500;
@@ -2135,7 +1743,7 @@ body {
   padding-left: 10px;
 }
 
-/* ?€??ëª©ì  ë°•ìŠ¤ (ë§ˆì´?˜ì´ì§€?€ ?™ì¼) */
+
 .manager .purpose-box {
   border: 1px solid #ddd;
   background-color: var(--light-gray);
@@ -2146,7 +1754,7 @@ body {
   margin-left: auto;
 }
 
-/* --- ?¹ì¸ ë²„íŠ¼ (?¤ë¥¸ìª?ë°°ì¹˜) --- */
+
 .manager .approve-btn {
   background: none;
   border: none;
@@ -2202,7 +1810,7 @@ background: none;
   font-size: 14px;
 }
 
-/* ê·¸ë˜???ì—­ */
+
 .manager .graph-box {
   display: flex;
   align-items: center;
